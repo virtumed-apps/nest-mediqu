@@ -1,9 +1,9 @@
 import { JwtService } from '@nestjs/jwt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
 import { LoginResponseSwagger } from '../swagger/login-user.dto';
 import { LoginSwagger } from '../swagger/login.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class SecurityService {

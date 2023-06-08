@@ -1,6 +1,6 @@
-import { User } from '../entities/user.entity';
-import { CreateUserSwagger } from '../swagger/create-user.dto';
-import { UpdateUserSwagger } from '../swagger/update-user.dto';
+import { User } from 'src/entities/user.entities';
+import { CreateUserSwagger } from 'src/app/user/swagger/create-user.dto';
+import { UpdateUserSwagger } from 'src/app/user/swagger/update-user.dto';
 
 export default interface IAppointmentRepository {
   createUser(data: CreateUserSwagger): Promise<User>;

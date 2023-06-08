@@ -8,10 +8,10 @@ import {
   Param,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { User } from 'src/app/user/entities/user.entity';
 import { UserService } from 'src/app/user/service/user.service';
 import { CreateUserSwagger } from 'src/app/user/swagger/create-user.dto';
 import { UpdateUserSwagger } from 'src/app/user/swagger/update-user.dto';
+import { User } from 'src/entities/user.entities';
 
 @ApiTags('users')
 @Controller('users')

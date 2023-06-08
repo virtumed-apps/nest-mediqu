@@ -1,10 +1,10 @@
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import { User } from '../entities/user.entity';
 import IUserRepository from './IUserRepository';
 import { BadRequestException } from '@nestjs/common';
 import { handleError } from 'src/shared/error/handle-error.util';
+import { User } from 'src/entities/user.entities';
 import * as bcrypt from 'bcrypt';
 
 export class UserRepository {

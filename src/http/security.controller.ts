@@ -10,10 +10,10 @@ import {
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 import { LoggedUser } from 'src/common/decorators/user.decorator';
-import { User } from 'src/app/user/entities/user.entity';
 import { LoginSwagger } from 'src/app/security/swagger/login.dto';
 import { LoginResponseSwagger } from 'src/app/security/swagger/login-user.dto';
 import { SecurityService } from 'src/app/security/service/security.service';
+import { User } from 'src/entities/user.entities';
 
 @ApiTags('access')
 @Controller('access')

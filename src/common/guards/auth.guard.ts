@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 import { Role } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { ROLES_KEY } from './entities/role-decorator';
-import { User } from 'src/app/user/entities/user.entity';
+import { User } from 'src/entities/user.entities';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

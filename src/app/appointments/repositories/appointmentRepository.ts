@@ -1,8 +1,8 @@
 import { PrismaService } from 'src/database/prisma/prisma.service';
-import { CreateUserSwagger } from '../swagger/create-user.dto';
-import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import { User } from '../entities/user.entity';
-import IUserRepository from './IUserRepository';
+import IAppointmentRepository from './IAppointmentRepository';
+import { User } from 'src/entities/user.entities';
+import { CreateUserSwagger } from 'src/app/user/swagger/create-user.dto';
+import { UpdateUserSwagger } from 'src/app/user/swagger/update-user.dto';
 
 export class AppointmentRepository implements IAppointmentRepository {
   constructor(private readonly prisma: PrismaService) {}

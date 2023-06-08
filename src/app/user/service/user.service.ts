@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import { User } from '../entities/user.entity';
 import { UserRepository } from '../repositories/userRepository';
+import { User } from 'src/entities/user.entities';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async createUser(data: CreateUserSwagger): Promise<User> {
-    return this.userRepository.createUser(data);
+    return this.userRepository.createAdmin(data);
   }
 
   async getAllUsers(): Promise<User[]> {

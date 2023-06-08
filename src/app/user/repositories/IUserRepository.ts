@@ -1,4 +1,4 @@
-import { User } from '../entities/user.entity';
+import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 
