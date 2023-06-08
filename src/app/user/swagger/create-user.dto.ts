@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateUserSwagger {
   @IsString()
@@ -33,4 +33,15 @@ export class CreateUserSwagger {
     example: 'Abc@1234',
   })
   confirmPassword: string;
+
+  @IsString()
+  @IsNotEmpty()
+  avatar_url?: string;
+
+  @IsBoolean()
+  @ApiProperty({
+    description: 'Atividade do usuário',
+    example: false,
+  })
+  active: boolean;
 }

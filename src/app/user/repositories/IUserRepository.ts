@@ -5,11 +5,15 @@ import { UpdateUserSwagger } from '../swagger/update-user.dto';
 export default interface IUserRepository {
   createUser(data: CreateUserSwagger): Promise<User>;
 
+  createDoctor(data: CreateUserSwagger): Promise<User>;
+
   findAllUser(): Promise<User[]>;
 
   findOneUser(id: string): Promise<User>;
 
   updateUser(id: string, data: UpdateUserSwagger): Promise<User>;
 
-  deleteUser(id: string): Promise<any>;
+  startDeleteJob(isActive: boolean, id: string): Promise<void>;
+
+  startScoreDelete(isActive: boolean, id: string): Promise<void>;
 }

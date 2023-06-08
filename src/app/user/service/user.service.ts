@@ -9,7 +9,11 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async createUser(data: CreateUserSwagger): Promise<User> {
-    return this.userRepository.createAdmin(data);
+    return this.userRepository.createUser(data);
+  }
+
+  async createDoctor(data: CreateUserSwagger): Promise<User> {
+    return this.userRepository.createDoctor(data);
   }
 
   async getAllUsers(): Promise<User[]> {
@@ -22,9 +26,5 @@ export class UserService {
 
   async updateUser(id: string, data: UpdateUserSwagger): Promise<User> {
     return this.userRepository.updateUser(id, data);
-  }
-
-  async deleteUser(id: string): Promise<void> {
-    return this.userRepository.deleteUser(id);
   }
 }

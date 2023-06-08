@@ -6,28 +6,31 @@ import { BadRequestException } from '@nestjs/common';
 import { handleError } from 'src/shared/error/handle-error.util';
 import { User } from 'src/entities/user.entities';
 import * as bcrypt from 'bcrypt';
+import { schedule } from 'node-cron';
 
-export class UserRepository {
-  private userSelect = {
-    id: true,
-    name: true,
-    email: true,
-    password: false,
-    role: true,
-    createdAt: true,
-    updateAt: true,
-  };
-
+export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createAdmin(data: CreateUserSwagger): Promise<User> {
+  async createUser(data: CreateUserSwagger): Promise<User> {
     if (data.password != data.confirmPassword) {
       throw new BadRequestException('As senhas informadas não são iguais.');
     }
 
     delete data.confirmPassword;
 
-    return this.prisma.user.create({ data });
+    const hashPassword = await bcrypt.hash(data.password, 10);
+
+    return this.prisma.user
+      .create({
+        data: {
+          name: data.name,
+          avatar_url: data.avatar_url,
+          email: data.email,
+          role: 'user',
+          password: hashPassword,
+        },
+      })
+      .catch(handleError);
   }
 
   async createDoctor(data: CreateUserSwagger): Promise<User> {
@@ -43,11 +46,11 @@ export class UserRepository {
       .create({
         data: {
           name: data.name,
+          avatar_url: data.avatar_url,
           email: data.email,
           role: 'doctor',
           password: hashPassword,
         },
-        select: this.userSelect,
       })
       .catch(handleError);
   }
@@ -64,7 +67,34 @@ export class UserRepository {
     return this.prisma.user.update({ where: { id }, data });
   }
 
-  async deleteUser(id: string): Promise<void> {
-    await this.prisma.user.delete({ where: { id } });
+  async startDeleteJob(isActive: boolean, id: string): Promise<void> {
+    if (isActive === true) {
+      const job = schedule('0 0 * * *', async () => {
+        // Executa a exclusão após 30 dias
+        await this.prisma.user.delete({
+          where: {
+            id,
+          },
+        });
+      });
+
+      // Inicia a tarefa agendada
+      job.start();
+    }
+  }
+
+  async startScoreDelete(isActive: boolean, id: string): Promise<void> {
+    if (isActive === true) {
+      this.startDeleteJob(isActive, id);
+
+      await this.prisma.user.update({
+        where: {
+          id,
+        },
+        data: {
+          active: false,
+        },
+      });
+    }
   }
 }
