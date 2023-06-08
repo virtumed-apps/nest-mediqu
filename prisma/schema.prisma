@@ -8,15 +8,17 @@ datasource db {
 }
 
 model User {
-  id         String @id @default(uuid())
-  email      String @unique
+  id         String  @id @default(uuid())
+  email      String  @unique
   name       String
   password   String
   avatar_url String
+  active     Boolean @default(true)
+  first_time Boolean @default(true)
 
   role Role @default(user)
 
-  userInfo   UserInfo? @relation(references: [id], fields: [userInfoId])
+  userInfo   UserInfo? @relation(references: [id], fields: [userInfoId], onDelete: Cascade, onUpdate: Cascade)
   userInfoId String?
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -24,8 +26,24 @@ model User {
 }
 
 model UserInfo {
-  id        String   @id @default(uuid())
-  token     String   @default(uuid())
+  id              String  @id @default(uuid())
+  cell            String  @unique
+  phone           String  @unique
+  cpf             String  @unique
+  birth           String
+  cep             String
+  adress          String
+  number          String
+  passport        String  @unique
+  neighborhood    String
+  postal_code     String
+  complement      String?
+  maritial_status String
+  rg              String  @unique
+  sex             Sex     @default(not)
+  uf              String
+  about           String
+
   user_id   String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -39,4 +57,10 @@ enum Role {
   user
   doctor
   admin
+}
+
+enum Sex {
+  man
+  woman
+  not
 }
