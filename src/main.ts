@@ -33,6 +33,7 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addTag('status')
     .addTag('users')
+    .addTag('admin')
     .addTag('access')
     .addBearerAuth()
     .build();
