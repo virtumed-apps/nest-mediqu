@@ -1,14 +1,13 @@
-[ x ] Forgot-Password
-[ x ] Send-Email
-[ x ] Agendamento
-[ x ] Criar Usuários
+[ ] Forgot-Password
+[ ] Send-Email
+[ ] Agendamento
 [ ] Criar Usuários
-[ ] Criar Usuários
-[ ] Criar Usuários
-[ ] Criar Usuários
-[ ] Criar Usuários
-[ ] Criar Usuários
-[ ] Criar Usuários
+[ ] Criar Convenio
+[ ] Criar Conselho
+[ ] Criar Cupom
+[ ] Especialidades médicas
+[ ] Tipos de hoários
+
 
 <!-- <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
