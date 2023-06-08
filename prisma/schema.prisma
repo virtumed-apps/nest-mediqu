@@ -27,6 +27,7 @@ model User {
 
 model UserInfo {
   id              String  @id @default(uuid())
+  he_meets        HeMeets @default(null)
   cell            String  @unique
   phone           String  @unique
   cpf             String  @unique
@@ -40,7 +41,7 @@ model UserInfo {
   complement      String?
   maritial_status String
   rg              String  @unique
-  sex             Sex     @default(not)
+  sex             Sex     @default(null)
   uf              String
   about           String
 
@@ -53,14 +54,38 @@ model UserInfo {
   @@map("user_info")
 }
 
+model Appointment {
+  id              String  @id @default(uuid())
+  id_patient      String
+  id_professional String
+  date_time       String
+  status          Boolean
+  type            String
+  payment         Boolean
+  in_person       Boolean
+  multiple_users  Boolean
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("appointment")
+}
+
 enum Role {
   user
   doctor
   admin
 }
 
+enum HeMeets {
+  agreement
+  private
+  public
+  null
+}
+
 enum Sex {
   man
   woman
-  not
+  null
 }
