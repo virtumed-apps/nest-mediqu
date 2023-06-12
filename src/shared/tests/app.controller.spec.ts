@@ -15,7 +15,7 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
+    it(`🚀 Server is running on!  ${process.env.BASE_URL}/docs`, () => {
       expect(appController.serverIsRunning()).toBe(
         `🚀 Server is running on!  ${process.env.BASE_URL}/docs`,
       );

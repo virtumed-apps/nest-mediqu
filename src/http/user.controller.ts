@@ -5,8 +5,8 @@ import { UserService } from 'src/app/user/service/user.service';
 import { CreateUserSwagger } from 'src/app/user/swagger/create-user.dto';
 import { UpdateUserSwagger } from 'src/app/user/swagger/update-user.dto';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags('user')
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

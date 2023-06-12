@@ -32,13 +32,15 @@ async function bootstrap() {
     .setDescription('APLICAÇÃO PARA MÉDICOS')
     .setVersion('1.0.0')
     .addTag('status')
-    .addTag('users')
+    .addTag('user')
     .addTag('admin')
+    .addTag('appointments')
     .addTag('access')
     .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(3333, '0.0.0.0');
