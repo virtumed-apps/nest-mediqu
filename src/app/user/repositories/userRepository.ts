@@ -1,12 +1,14 @@
-import { PrismaService } from 'src/database/prisma/prisma.service';
+import { BadRequestException } from '@nestjs/common';
+import { schedule } from 'node-cron';
+import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import IUserRepository from './IUserRepository';
-import { BadRequestException } from '@nestjs/common';
+import { PrismaService } from 'src/database/prisma/prisma.service';
 import { handleError } from 'src/shared/error/handle-error.util';
-import { User } from 'src/entities/user.entities';
+
+import IUserRepository from './IUserRepository';
+
 import * as bcrypt from 'bcrypt';
-import { schedule } from 'node-cron';
 
 export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
@@ -20,7 +22,7 @@ export class UserRepository implements IUserRepository {
 
     const hashPassword = await bcrypt.hash(data.password, 10);
 
-    return this.prisma.user
+    return await this.prisma.user
       .create({
         data: {
           name: data.name,
@@ -42,7 +44,7 @@ export class UserRepository implements IUserRepository {
 
     const hashPassword = await bcrypt.hash(data.password, 10);
 
-    return this.prisma.user
+    return await this.prisma.user
       .create({
         data: {
           name: data.name,
@@ -60,11 +62,13 @@ export class UserRepository implements IUserRepository {
   }
 
   async findOneUser(id: string): Promise<User> {
-    return this.prisma.user.findUnique({ where: { id } });
+    const user = await this.prisma.user.findUnique({ where: { id } });
+    return user;
   }
 
   async updateUser(id: string, data: UpdateUserSwagger): Promise<User> {
-    return this.prisma.user.update({ where: { id }, data });
+    const update = await this.prisma.user.update({ where: { id }, data });
+    return update;
   }
 
   async startDeleteJob(isActive: boolean, id: string): Promise<void> {

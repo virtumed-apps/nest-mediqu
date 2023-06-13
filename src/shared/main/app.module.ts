@@ -6,12 +6,14 @@ import { PrismaModule } from 'src/database/prisma/prisma.module';
 import { UserModule } from 'src/app/user/user.module';
 import { SecurityModule } from 'src/app/security/security.module';
 import { AdminModule } from 'src/app/admin/admin.module';
+import { AppointmentModule } from 'src/app/appointments/appointment.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     PrismaModule,
     AdminModule,
+    AppointmentModule,
     UserModule,
     SecurityModule,
   ],

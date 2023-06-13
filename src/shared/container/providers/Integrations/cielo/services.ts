@@ -1,5 +1,5 @@
+import { GetCardType } from 'src/common/utils/utils';
 import api from './api';
-import { GetCardType } from '../../../utilities/utils';
 
 export const pagamento = ({
   cartaocodigoseguranca,
