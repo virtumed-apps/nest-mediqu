@@ -1,36 +1,35 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsInt } from 'class-validator';
 
 export class IFindAllInDay {
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Id do usuário',
+    description: 'ID do usuário',
     example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5a',
   })
   user_id: string;
 
-  @IsString()
+  @IsInt()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Id do usuário',
-    example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5a',
+    description: 'Dia do mês',
+    example: 12,
   })
   day: number;
 
-  @IsString()
+  @IsInt()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Id do usuário',
-    example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5a',
+    description: 'Mês',
+    example: 6,
   })
   month: number;
 
-  @IsString()
+  @IsInt()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Id do usuário',
-    example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5a',
+    description: 'Ano',
+    example: 2023,
   })
   year: number;
 }

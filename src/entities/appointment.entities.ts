@@ -2,7 +2,7 @@ export class Appointment {
   id: string;
   id_patient: string;
   id_professional: string;
-  date: string;
+  date: Date;
   status: boolean;
   type: string;
   payment: boolean;

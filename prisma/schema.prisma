@@ -58,7 +58,7 @@ model Appointment {
   id              String   @id @default(uuid())
   id_patient      String
   id_professional String
-  date            String
+  date            DateTime
   type            String
   status          Boolean?
   payment         Boolean

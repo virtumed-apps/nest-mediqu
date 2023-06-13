@@ -8,6 +8,8 @@ export const users: Prisma.UserCreateInput[] = [
     password: 'Abc@1234',
     avatar_url: '',
     active: true,
+    first_time: true,
+    role: 'admin',
   },
 ];
 

@@ -1,60 +1,53 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class ICreateAppointment {
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'ID do paciente',
+    example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5a',
   })
   id_patient: string;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'ID do profissional',
+    example: 'e1d7af5d-9d23-4876-b020-5066f5f66e5b',
   })
   id_professional: string;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'Data do agendamento',
+    example: '2023-06-13T22:00:00',
   })
-  date: string;
+  date: Date;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'Tipo de agendamento',
+    example: 'Consulta',
   })
   type: string;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'Indicador de múltiplos usuários',
+    example: true,
   })
   multiple_users: boolean;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'Indicador de pagamento',
+    example: true,
   })
   payment: boolean;
 
-  @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do usuário.',
-    example: 'User',
+    description: 'Indicador de atendimento presencial',
+    example: true,
   })
   in_person: boolean;
 }

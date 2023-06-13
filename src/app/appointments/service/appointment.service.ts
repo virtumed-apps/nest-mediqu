@@ -1,16 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { Appointment } from 'src/entities/appointment.entities';
 import { ICreateAppointment } from '../swagger/ICreateAppointment/create-appointment.dto';
-import { startOfHour, isBefore, format, parseISO } from 'date-fns';
-import AppointmentRepository from '../repositories/appointmentRepository';
+import { startOfHour, isBefore, format, getHours, isAfter } from 'date-fns';
 import { handleError } from 'src/shared/error/handle-error.util';
+import AppointmentRepository from '../repositories/appointmentRepository';
+
+interface IRequest {
+  user_id: string;
+  day: number;
+  month: number;
+  year: number;
+}
+
+type IResponse = Array<{
+  hour: number;
+  available: boolean;
+}>;
 
 @Injectable()
 export class AppointmentService {
   constructor(private readonly appointmentRepository: AppointmentRepository) {}
 
   async createAppointment(data: ICreateAppointment): Promise<Appointment> {
-    const appointmentDate = startOfHour(parseISO(data.date)); // Parse a string de data para o formato Date
+    const appointmentDate = startOfHour(new Date(data.date));
 
     if (isBefore(appointmentDate, Date.now())) {
       throw handleError(
@@ -38,6 +50,80 @@ export class AppointmentService {
 
     console.log(dateFormatted);
 
-    return await this.appointmentRepository.createAppointment(data);
+    const savedAppointment = await this.appointmentRepository.createAppointment(
+      {
+        ...data,
+        date: appointmentDate,
+      },
+    );
+
+    return savedAppointment;
+  }
+
+  async findAllInDayFromProfissional({
+    user_id,
+    day,
+    month,
+    year,
+  }: IRequest): Promise<Appointment[]> {
+    return this.appointmentRepository.findAllInDayFromProfissional({
+      user_id,
+      day,
+      month,
+      year,
+    });
+  }
+
+  async findAllInDayFromPatient({
+    user_id,
+    day,
+    month,
+    year,
+  }: IRequest): Promise<Appointment[]> {
+    return this.appointmentRepository.findAllInDayFromPatient({
+      user_id,
+      day,
+      month,
+      year,
+    });
+  }
+
+  public async listProvidersDayAvailability({
+    user_id,
+    day,
+    month,
+    year,
+  }: IRequest): Promise<IResponse> {
+    const appointments =
+      await this.appointmentRepository.findAllInDayFromPatient({
+        user_id,
+        day,
+        month,
+        year,
+      });
+
+    const hourStart = 0;
+
+    const eachHourArray = Array.from(
+      { length: 24 },
+      (_, index) => index + hourStart,
+    );
+
+    const currentDate = new Date(Date.now());
+
+    const availability = eachHourArray.map((hour) => {
+      const hasAppointmentInHour = appointments.find(
+        (appointment) => getHours(appointment.date) === hour,
+      );
+
+      const compareDate = new Date(year, month - 1, day, hour);
+
+      return {
+        hour,
+        available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
+      };
+    });
+
+    return availability;
   }
 }

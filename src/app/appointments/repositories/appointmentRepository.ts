@@ -9,6 +9,7 @@ import { IFindAllInDay } from '../swagger/IFindAllInDay/find-appointmentInDay.dt
 import { IFindAllInMonth } from '../swagger/IFindAllInMonth/find-appointmentInMonth.dto';
 
 import IAppointmentsRepository from './IAppointmentRepository';
+import { endOfDay, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 
 @Injectable()
 class AppointmentRepository implements IAppointmentsRepository {
@@ -20,9 +21,7 @@ class AppointmentRepository implements IAppointmentsRepository {
   }: IFindAppointments): Promise<Appointment | undefined | null> {
     const appointments = await this.prisma.appointment.findFirst({
       where: {
-        date: {
-          equals: date.toISOString(), // Converter a data para uma string no formato ISO
-        },
+        date,
         id_patient: user_id,
       },
     });
@@ -37,7 +36,7 @@ class AppointmentRepository implements IAppointmentsRepository {
     const appointments = await this.prisma.appointment.findFirst({
       where: {
         date: {
-          equals: date.toISOString(), // Converter a data para uma string no formato ISO
+          equals: date, // Converter a data para uma string no formato ISO
         },
         id_patient: user_id,
       },
@@ -53,7 +52,7 @@ class AppointmentRepository implements IAppointmentsRepository {
     const appointments = await this.prisma.appointment.findFirst({
       where: {
         date: {
-          equals: date.toISOString(), // Converter a data para uma string no formato ISO
+          equals: date, // Converter a data para uma string no formato ISO
         },
         id_professional: user_id,
       },
@@ -69,7 +68,7 @@ class AppointmentRepository implements IAppointmentsRepository {
     const appointments = await this.prisma.appointment.findFirst({
       where: {
         date: {
-          equals: date.toISOString(), // Converter a data para uma string no formato ISO
+          equals: date, // Converter a data para uma string no formato ISO
         },
         id_professional: user_id,
       },
@@ -107,13 +106,15 @@ class AppointmentRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInMonth): Promise<Appointment[]> {
-    const parsedMonth = String(month).padStart(2, '0');
+    const startDate = startOfMonth(new Date(year, month - 1));
+    const endDate = endOfMonth(new Date(year, month - 1));
 
     const appointments = await this.prisma.appointment.findMany({
       where: {
         id_professional: user_id,
         date: {
-          contains: `${parsedMonth}-${year}`,
+          gte: startDate,
+          lte: endDate,
         },
       },
     });
@@ -127,14 +128,15 @@ class AppointmentRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInDay): Promise<Appointment[]> {
-    const parsedDay = String(day).padStart(2, '0');
-    const parsedMonth = String(month).padStart(2, '0');
+    const startDate = startOfDay(new Date(year, month - 1, day));
+    const endDate = endOfDay(new Date(year, month - 1, day));
 
     const appointments = await this.prisma.appointment.findMany({
       where: {
         id_professional: user_id,
         date: {
-          contains: `${parsedDay}-${parsedMonth}-${year}`,
+          gte: startDate,
+          lte: endDate,
         },
       },
     });
@@ -148,14 +150,15 @@ class AppointmentRepository implements IAppointmentsRepository {
     month,
     year,
   }: IFindAllInDay): Promise<Appointment[]> {
-    const parsedDay = String(day).padStart(2, '0');
-    const parsedMonth = String(month).padStart(2, '0');
+    const startDate = startOfDay(new Date(year, month - 1, day));
+    const endDate = endOfDay(new Date(year, month - 1, day));
 
     const appointments = await this.prisma.appointment.findMany({
       where: {
         id_patient: user_id,
         date: {
-          contains: `${parsedDay}-${parsedMonth}-${year}`,
+          gte: startDate,
+          lte: endDate,
         },
       },
     });
