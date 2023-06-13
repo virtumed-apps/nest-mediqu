@@ -2,19 +2,10 @@ import { Module } from '@nestjs/common';
 import { AdminService } from './service/admin.service';
 import { AdminController } from 'src/http/admin.controller';
 import { AdminRepository } from './repositories/adminRepository';
-import { PrismaModule } from 'src/database/prisma/prisma.module';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
+import { SecurityModule } from '../security/security.module';
 
 @Module({
-  imports: [
-    PrismaModule,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '24h' },
-    }),
-  ],
+  imports: [SecurityModule],
   providers: [AdminRepository, AdminService],
   controllers: [AdminController],
 })

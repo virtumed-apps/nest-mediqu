@@ -55,12 +55,12 @@ model UserInfo {
 }
 
 model Appointment {
-  id              String  @id @default(uuid())
+  id              String   @id @default(uuid())
   id_patient      String
   id_professional String
-  date_time       String
-  status          Boolean
+  date            String
   type            String
+  status          Boolean?
   payment         Boolean
   in_person       Boolean
   multiple_users  Boolean

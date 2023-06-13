@@ -34,7 +34,7 @@ async function bootstrap() {
     .addTag('status')
     .addTag('user')
     .addTag('admin')
-    .addTag('appointments')
+    .addTag('appointment')
     .addTag('access')
     .addBearerAuth()
     .build();

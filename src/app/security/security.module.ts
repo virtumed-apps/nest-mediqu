@@ -17,5 +17,6 @@ import { JwtStrategy } from 'src/common/jwt/jwt';
   ],
   controllers: [SecurityController],
   providers: [SecurityService, JwtStrategy],
+  exports: [PrismaModule, PassportModule, JwtModule], // Exporta os módulos para serem usados em outros módulos
 })
 export class SecurityModule {}

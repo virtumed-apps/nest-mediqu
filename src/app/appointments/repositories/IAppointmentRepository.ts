@@ -1,15 +1,64 @@
-import { User } from 'src/entities/user.entities';
-import { CreateUserSwagger } from 'src/app/user/swagger/create-user.dto';
-import { UpdateUserSwagger } from 'src/app/user/swagger/update-user.dto';
+import { Appointment } from 'src/entities/appointment.entities';
 
-export default interface IAppointmentRepository {
-  createUser(data: CreateUserSwagger): Promise<User>;
+import { ICreateAppointment } from '../swagger/ICreateAppointment/create-appointment.dto';
+import { IFindAppointments } from '../swagger/IFindAllAppointment/find-appointment.dto';
+import { IFindAllInDay } from '../swagger/IFindAllInDay/find-appointmentInDay.dto';
+import { IFindAllInMonth } from '../swagger/IFindAllInMonth/find-appointmentInMonth.dto';
 
-  findAllUser(): Promise<User[]>;
+export default interface IAppointmentsRepository {
+  createAppointment({
+    id_patient,
+    id_professional,
+    date,
+    type,
+    multiple_users,
+    payment,
+    in_person,
+  }: ICreateAppointment): Promise<Appointment>;
 
-  findOneUser(id: string): Promise<User>;
+  findMyAppointmentsAsPatient({
+    date,
+    user_id,
+  }: IFindAppointments): Promise<Appointment | undefined | null>;
 
-  updateUser(id: string, data: UpdateUserSwagger): Promise<User>;
+  findPatientAppointments({
+    date,
+    user_id,
+  }: IFindAppointments): Promise<Appointment | undefined | null>;
 
-  deleteUser(id: string): Promise<any>;
+  findMyAppointmentsAsDoctor({
+    date,
+    user_id,
+  }: IFindAppointments): Promise<Appointment | undefined | null>;
+
+  findDoctorAppointments({
+    date,
+    user_id,
+  }: IFindAppointments): Promise<Appointment | undefined | null>;
+
+  findAllDoctorAppointment(id_professional: string): Promise<Appointment[]>;
+
+  findAllPatientAppointment(id_professional: string): Promise<Appointment[]>;
+
+  findAllInMonthFromPatient({
+    user_id,
+    month,
+    year,
+  }: IFindAllInMonth): Promise<Appointment[]>;
+
+  findAllInDayFromProfissional({
+    user_id,
+    day,
+    month,
+    year,
+  }: IFindAllInDay): Promise<Appointment[]>;
+
+  findAllInDayFromPatient({
+    user_id,
+    day,
+    month,
+    year,
+  }: IFindAllInDay): Promise<Appointment[]>;
+
+  delete(appointment_id: string): Promise<void>;
 }
