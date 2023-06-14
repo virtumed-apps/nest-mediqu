@@ -33,7 +33,7 @@ export class AppointmentController {
   }
 
   @Get(':patient_id/day-availability-patient/:year/:month/:day')
-  async findAllInMonthFromPatient(
+  async listProvidersDayAvailability(
     @Param('patient_id') user_id: string,
     @Param('year') year: number,
     @Param('month') month: number,
@@ -42,6 +42,19 @@ export class AppointmentController {
     return this.appointmentService.listProvidersDayAvailability({
       user_id,
       day,
+      month,
+      year,
+    });
+  }
+
+  @Get(':patient_id/month-availability-patient/:year/:month')
+  async findAllInMonthFromPatient(
+    @Param('patient_id') user_id: string,
+    @Param('year') year: number,
+    @Param('month') month: number,
+  ) {
+    return this.appointmentService.findAllInMonthFromPatient({
+      user_id,
       month,
       year,
     });

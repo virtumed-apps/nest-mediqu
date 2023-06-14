@@ -1,5 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  Matches,
+} from 'class-validator';
 
 export class CreateUserSwagger {
   @IsString()
@@ -20,16 +26,20 @@ export class CreateUserSwagger {
 
   @IsString()
   @IsNotEmpty()
+  @Matches(/^(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$/)
   @ApiProperty({
-    description: 'Senha do user para login',
+    description:
+      'Senha do usuário para login. Deve ter 8 caracteres, um maiúsculo e um caractere especial',
     example: 'Abc@1234',
   })
   password: string;
 
   @IsString()
   @IsNotEmpty()
+  @Matches(/^(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$/)
   @ApiProperty({
-    description: 'A confirmação da senha deve ser igual a senha',
+    description:
+      'Senha do usuário para login. Deve ter 8 caracteres, um maiúsculo e um caractere especial',
     example: 'Abc@1234',
   })
   confirmPassword: string;

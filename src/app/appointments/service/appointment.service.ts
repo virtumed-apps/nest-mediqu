@@ -1,7 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Appointment } from 'src/entities/appointment.entities';
 import { ICreateAppointment } from '../swagger/ICreateAppointment/create-appointment.dto';
-import { startOfHour, isBefore, format, getHours, isAfter } from 'date-fns';
+import {
+  startOfHour,
+  isBefore,
+  format,
+  getHours,
+  isAfter,
+  getDaysInMonth,
+  getDate,
+} from 'date-fns';
 import { handleError } from 'src/shared/error/handle-error.util';
 import AppointmentRepository from '../repositories/appointmentRepository';
 
@@ -12,8 +20,19 @@ interface IRequest {
   year: number;
 }
 
-type IResponse = Array<{
+interface IRequestPatient {
+  user_id: string;
+  month: number;
+  year: number;
+}
+
+type IResponseDay = Array<{
   hour: number;
+  available: boolean;
+}>;
+
+type IResponseMonth = Array<{
+  day: number;
   available: boolean;
 }>;
 
@@ -93,7 +112,7 @@ export class AppointmentService {
     day,
     month,
     year,
-  }: IRequest): Promise<IResponse> {
+  }: IRequest): Promise<IResponseDay> {
     const appointments =
       await this.appointmentRepository.findAllInDayFromPatient({
         user_id,
@@ -121,6 +140,42 @@ export class AppointmentService {
       return {
         hour,
         available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
+      };
+    });
+
+    return availability;
+  }
+
+  public async findAllInMonthFromPatient({
+    user_id,
+    month,
+    year,
+  }: IRequestPatient): Promise<IResponseMonth> {
+    const appointments =
+      await this.appointmentRepository.findAllInMonthFromPatient({
+        user_id,
+        month,
+        year,
+      });
+
+    const numberOfDaysInMonth = getDaysInMonth(new Date(year, month - 1));
+
+    const eachDayArray = Array.from(
+      { length: numberOfDaysInMonth },
+      (_, index) => index + 1,
+    );
+
+    const availability = eachDayArray.map((day) => {
+      const compareDate = new Date(year, month - 1, day, 23, 59, 59);
+
+      const appointmentsInDay = appointments.filter((appointment: any) => {
+        return getDate(appointment.date) === day;
+      });
+
+      return {
+        day,
+        available:
+          isAfter(compareDate, new Date()) && appointmentsInDay.length < 24,
       };
     });
 
