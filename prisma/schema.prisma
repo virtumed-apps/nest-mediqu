@@ -86,6 +86,13 @@ model Appointment {
   @@map("appointment")
 }
 
+model Chat {
+  id   String @id @default(uuid())
+  text String
+
+  createdAt DateTime @default(now()) @map("created_at")
+}
+
 enum Role {
   user
   doctor
