@@ -21,6 +21,9 @@ model User {
   userInfo   UserInfo? @relation(references: [id], fields: [userInfoId], onDelete: Cascade, onUpdate: Cascade)
   userInfoId String?
 
+  oldPasswords   OldPasswords? @relation(fields: [oldPasswordsId], references: [id])
+  oldPasswordsId String?
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 }
@@ -52,6 +55,18 @@ model UserInfo {
   user User[]
 
   @@map("user_info")
+}
+
+model OldPasswords {
+  id            String   @id @default(uuid())
+  old_passwords String[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  User User[]
+
+  @@map("old_passwords")
 }
 
 model Appointment {
