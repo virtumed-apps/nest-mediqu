@@ -11,7 +11,9 @@ import { UserTokenModule } from 'src/app/user-token/user-token.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true, // no need to import into other modules
+    }),
     PrismaModule,
     AdminModule,
     AppointmentModule,

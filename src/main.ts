@@ -33,6 +33,7 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addTag('status')
     .addTag('user')
+    .addTag('user-token')
     .addTag('admin')
     .addTag('appointment')
     .addTag('security')

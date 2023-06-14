@@ -26,6 +26,8 @@ model User {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user")
 }
 
 model UserInfo {
@@ -48,11 +50,11 @@ model UserInfo {
   uf              String
   about           String
 
-  user_id   String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  user User[]
+  user    User[]
+  user_id String
 
   @@map("user_info")
 }

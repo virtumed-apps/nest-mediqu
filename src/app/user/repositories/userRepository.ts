@@ -1,60 +1,71 @@
-import { BadRequestException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { schedule } from 'node-cron';
+import { PrismaService } from 'src/database/prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
+import { Role } from '@prisma/client';
 import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import { PrismaService } from 'src/database/prisma/prisma.service';
-import { handleError } from 'src/shared/error/handle-error.util';
 
-import IUserRepository from './IUserRepository';
-
-import * as bcrypt from 'bcrypt';
-
-export class UserRepository implements IUserRepository {
+@Injectable()
+export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(data: CreateUserSwagger): Promise<User> {
-    if (data.password != data.confirmPassword) {
-      throw new BadRequestException('As senhas informadas não são iguais.');
+  async createUser({
+    name,
+    avatar_url,
+    email,
+    password,
+  }: CreateUserSwagger): Promise<User> {
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = await this.prisma.user.create({
+      data: {
+        name,
+        avatar_url,
+        email,
+        role: Role.user,
+        password: hashPassword,
+        active: true,
+        first_time: true,
+      },
+    });
+
+    return user;
+  }
+
+  async findEmailUser(email: string): Promise<User> {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      console.log(`${email} does not exist`);
     }
 
-    delete data.confirmPassword;
-
-    const hashPassword = await bcrypt.hash(data.password, 10);
-
-    return await this.prisma.user
-      .create({
-        data: {
-          name: data.name,
-          avatar_url: data.avatar_url,
-          email: data.email,
-          role: 'user',
-          password: hashPassword,
-        },
-      })
-      .catch(handleError);
+    return user;
   }
 
   async createDoctor(data: CreateUserSwagger): Promise<User> {
-    if (data.password != data.confirmPassword) {
-      throw new BadRequestException('As senhas informadas não são iguais.');
+    if (data.password !== data.confirmPassword) {
+      throw new BadRequestException('The passwords provided are not the same.');
     }
 
     delete data.confirmPassword;
 
     const hashPassword = await bcrypt.hash(data.password, 10);
 
-    return await this.prisma.user
-      .create({
-        data: {
-          name: data.name,
-          avatar_url: data.avatar_url,
-          email: data.email,
-          role: 'doctor',
-          password: hashPassword,
-        },
-      })
-      .catch(handleError);
+    return await this.prisma.user.create({
+      data: {
+        name: data.name,
+        avatar_url: data.avatar_url,
+        email: data.email,
+        role: 'doctor',
+        password: hashPassword,
+      },
+    });
   }
 
   async findAllUser(): Promise<User[]> {
@@ -72,9 +83,9 @@ export class UserRepository implements IUserRepository {
   }
 
   async startDeleteJob(isActive: boolean, id: string): Promise<void> {
-    if (isActive === true) {
+    if (isActive) {
       const job = schedule('0 0 * * *', async () => {
-        // Executa a exclusão após 30 dias
+        // Execute deletion after 30 days
         await this.prisma.user.delete({
           where: {
             id,
@@ -82,13 +93,13 @@ export class UserRepository implements IUserRepository {
         });
       });
 
-      // Inicia a tarefa agendada
+      // Start the scheduled task
       job.start();
     }
   }
 
   async startScoreDelete(isActive: boolean, id: string): Promise<void> {
-    if (isActive === true) {
+    if (isActive) {
       this.startDeleteJob(isActive, id);
 
       await this.prisma.user.update({

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 import { UserRepository } from '../repositories/userRepository';
@@ -9,7 +9,18 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async createUser(data: CreateUserSwagger): Promise<User> {
-    return this.userRepository.createUser(data);
+    if (data.password !== data.confirmPassword) {
+      throw new BadRequestException('As senhas informadas não são iguais.');
+    }
+
+    const verify = await this.userRepository.findEmailUser(data.email);
+
+    if (verify) {
+      throw new BadRequestException('Este usuário já existe.');
+    }
+
+    const user = await this.userRepository.createUser(data);
+    return user;
   }
 
   async createDoctor(data: CreateUserSwagger): Promise<User> {

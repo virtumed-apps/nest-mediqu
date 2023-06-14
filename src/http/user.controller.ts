@@ -12,7 +12,8 @@ export class UserController {
 
   @Post()
   async createUser(@Body() data: CreateUserSwagger): Promise<User> {
-    return this.userService.createUser(data);
+    const user = await this.userService.createUser(data);
+    return user;
   }
 
   @Get()

@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsBoolean,
-  IsEmail,
-  IsNotEmpty,
-  IsString,
-  Matches,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class CreateUserSwagger {
   @IsString()
@@ -45,13 +39,12 @@ export class CreateUserSwagger {
   confirmPassword: string;
 
   @IsString()
-  @IsNotEmpty()
-  avatar_url?: string;
-
-  @IsBoolean()
   @ApiProperty({
-    description: 'Atividade do usuário',
-    example: false,
+    description:
+      'Senha do usuário para login. Deve ter 8 caracteres, um maiúsculo e um caractere especial',
+    example:
+      'https://www.wikihow.com/images/thumb/d/db/Get-the-URL-for-Pictures-Step-2-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-2-Version-6.jpg',
   })
-  active: boolean;
+  @IsNotEmpty()
+  avatar_url: string;
 }
