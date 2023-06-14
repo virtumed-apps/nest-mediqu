@@ -7,6 +7,7 @@ import { UserModule } from 'src/app/user/user.module';
 import { SecurityModule } from 'src/app/security/security.module';
 import { AdminModule } from 'src/app/admin/admin.module';
 import { AppointmentModule } from 'src/app/appointments/appointment.module';
+import { UserTokenModule } from 'src/app/user-token/user-token.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AppointmentModule } from 'src/app/appointments/appointment.module';
     AdminModule,
     AppointmentModule,
     UserModule,
+    UserTokenModule,
     SecurityModule,
   ],
   controllers: [AppController],

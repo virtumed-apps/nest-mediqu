@@ -69,6 +69,17 @@ model OldPasswords {
   @@map("old_passwords")
 }
 
+model UserToken {
+  id      String @id @default(uuid())
+  token   String @default(uuid())
+  user_id String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_token")
+}
+
 model Appointment {
   id              String   @id @default(uuid())
   id_patient      String

@@ -15,8 +15,8 @@ import { LoginResponseSwagger } from 'src/app/security/swagger/login-user.dto';
 import { SecurityService } from 'src/app/security/service/security.service';
 import { User } from 'src/entities/user.entities';
 
-@ApiTags('access')
-@Controller('access')
+@ApiTags('security')
+@Controller('security')
 export class SecurityController {
   constructor(private readonly authService: SecurityService) {}
 
