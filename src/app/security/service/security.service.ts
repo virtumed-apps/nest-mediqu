@@ -7,6 +7,20 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class SecurityService {
+  private userSelect = {
+    id: true,
+    name: true,
+    email: true,
+    password: true,
+    active: true,
+    avatar_url: true,
+    role: true,
+    first_time: true,
+    userInfoId: false,
+    oldPasswordsId: false,
+    createdAt: false,
+    updatedAt: false,
+  };
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
@@ -18,6 +32,7 @@ export class SecurityService {
     // Procura e checa se o user existe, usando o email
     const user = await this.prisma.user.findUnique({
       where: { email },
+      select: this.userSelect, // Aplica a seleção de campos
     });
 
     if (!user) {
@@ -30,7 +45,7 @@ export class SecurityService {
       throw new UnauthorizedException('Usuário e/ou senha inválidos!');
     }
 
-    delete user.password && user.createdAt && user.updatedAt;
+    delete user.password;
 
     return {
       token: this.jwtService.sign({ email }),

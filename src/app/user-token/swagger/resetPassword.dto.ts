@@ -2,10 +2,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Matches } from 'class-validator';
 
 export class ResetPasswordSwagger {
+  @IsString()
+  @IsNotEmpty()
   @ApiProperty({
-    description: 'JWT gerado pelo login',
-    example:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InBhdWxvc2FsdmF0b3JlIiwiaWF0IjoxNjUyMjgxNjUwLCJleHAiOjE2NTIzNjgwNTB9._otkmKymFZ4kgxwAMdK5oXBDg6cK6_NXwCrP64IilS8',
+    description: 'Token Id',
+    example: 'ebe90b89-6e97-41fe-9855-fc57d5c7b29c',
   })
   token: string;
 

@@ -4,6 +4,6 @@ import { User } from 'src/entities/user.entities';
 export default interface IUserTokensRepository {
   generate(user_id: string): Promise<UserToken>;
   findByToken(token: string): Promise<UserToken | undefined | null>;
-  findUser(email: string): Promise<User | undefined>;
-  updatedUser(id: string, password: string): Promise<User>;
+  findUserById(email: string): Promise<User | undefined>;
+  updateUser(id: string, password: string): Promise<User>;
 }

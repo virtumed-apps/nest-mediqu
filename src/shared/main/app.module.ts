@@ -8,12 +8,14 @@ import { SecurityModule } from 'src/app/security/security.module';
 import { AdminModule } from 'src/app/admin/admin.module';
 import { AppointmentModule } from 'src/app/appointments/appointment.module';
 import { UserTokenModule } from 'src/app/user-token/user-token.module';
+import { MailModule } from 'src/app/mail/mail.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // no need to import into other modules
     }),
+    MailModule,
     PrismaModule,
     AdminModule,
     AppointmentModule,

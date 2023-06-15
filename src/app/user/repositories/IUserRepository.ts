@@ -3,7 +3,12 @@ import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 
 export default interface IUserRepository {
-  createUser(data: CreateUserSwagger): Promise<User>;
+  createUser({
+    name,
+    avatar_url,
+    email,
+    password,
+  }: CreateUserSwagger): Promise<User>;
 
   createDoctor(data: CreateUserSwagger): Promise<User>;
 

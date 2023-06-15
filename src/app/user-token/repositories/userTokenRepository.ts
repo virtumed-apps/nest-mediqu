@@ -1,12 +1,22 @@
+import { Injectable } from '@nestjs/common';
 import IUserTokenRepository from './IUserTokenRepository';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { UserToken } from 'src/entities/user-token.entities';
 import { User } from 'src/entities/user.entities';
 
+@Injectable()
 export class UserTokenRepository implements IUserTokenRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  public async findUser(email: string): Promise<User | undefined> {
+  public async findUserById(id: string): Promise<User | undefined> {
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+    });
+
+    return user;
+  }
+
+  public async findUserByEmail(email: string): Promise<User | undefined> {
     const user = await this.prisma.user.findUnique({
       where: { email },
     });
@@ -34,7 +44,7 @@ export class UserTokenRepository implements IUserTokenRepository {
     return userToken;
   }
 
-  public async updatedUser(id: string, password: string): Promise<User> {
+  public async updateUser(id: string, password: string): Promise<User> {
     const user = await this.prisma.user.update({
       where: {
         id,

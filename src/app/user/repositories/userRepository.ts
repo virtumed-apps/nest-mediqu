@@ -1,14 +1,15 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { schedule } from 'node-cron';
 import { PrismaService } from 'src/database/prisma/prisma.service';
-import * as bcrypt from 'bcrypt';
 import { Role } from '@prisma/client';
 import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
+import * as bcrypt from 'bcrypt';
+import IUserRepository from './IUserRepository';
 
 @Injectable()
-export class UserRepository {
+export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async createUser({

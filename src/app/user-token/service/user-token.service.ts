@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { handleError } from 'src/shared/error/handle-error.util';
 import { UserTokenRepository } from '../repositories/userTokenRepository';
-import { addHours, isAfter } from 'date-fns';
+import { addMinutes, isAfter } from 'date-fns';
 import * as bcrypt from 'bcrypt';
 
 interface IRequest {
@@ -9,57 +8,57 @@ interface IRequest {
 }
 
 interface IReset {
-  password: string;
   token: string;
+  password: string;
 }
 
 @Injectable()
 export class UserTokenService {
   constructor(private readonly userTokenRepository: UserTokenRepository) {}
 
-  async sendForgotPasswordEmail({ email }: IRequest): Promise<string> {
-    // Procura e checa se o user existe, usando o email
-    const user = await this.userTokenRepository.findUser(email);
+  async sendForgotPasswordEmail({
+    email,
+  }: IRequest): Promise<{ message: string }> {
+    const user = await this.userTokenRepository.findUserByEmail(email);
 
     if (!user) {
-      throw handleError(new Error('User does not exists.'));
+      throw new Error('User does not exist.');
     }
 
     const { token } = await this.userTokenRepository.generate(user.id);
 
-    // const message = await this.mailProvider.sendMail(
-    //   email,
-    //   `Pedido de Recuperação de senha ${token}`,
-    // );
-
     const message = `Pedido de Recuperação de senha ${token}`;
+
+    const data = {
+      message,
+    };
+
     console.log(token);
 
-    return message;
+    return data;
   }
-
-  public async resetPassword({ token, password }: IReset): Promise<void> {
+  async resetPassword({ token, password }: IReset): Promise<void> {
     const userToken = await this.userTokenRepository.findByToken(token);
 
     if (!userToken) {
-      throw handleError(new Error('User Token does not exists'));
+      throw new Error('User Token does not exist.');
     }
 
-    const user = await this.userTokenRepository.findUser(userToken.user_id);
+    const user = await this.userTokenRepository.findUserById(userToken.user_id);
 
     if (!user) {
-      throw handleError(new Error('User does not exists.'));
+      throw new Error('User does not exist.');
     }
 
     const tokenCreatedAt = userToken.createdAt;
-    const compareDate = addHours(tokenCreatedAt, 2);
+    const compareDate = addMinutes(tokenCreatedAt, 2);
 
     if (isAfter(Date.now(), compareDate)) {
-      throw handleError(new Error('Token expired'));
+      throw new Error('Token expired.');
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    await this.userTokenRepository.updatedUser(user.id, hashPassword);
+    await this.userTokenRepository.updateUser(user.id, hashPassword);
   }
 }

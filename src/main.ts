@@ -14,6 +14,9 @@ async function bootstrap() {
     origin: '*',
   });
 
+  // Para conseguir pegar o protocolo https
+  app.set('trust proxy', 1);
+
   // Configurando o mecanismo de visualização para o Handlebars
   app.setViewEngine('hbs');
 
