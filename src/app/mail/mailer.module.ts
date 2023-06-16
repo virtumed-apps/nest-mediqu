@@ -1,20 +1,21 @@
 import { MailerModule } from '@nestjs-modules/mailer';
-import { Module } from '@nestjs/common';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { Global, Module } from '@nestjs/common';
 import { join } from 'path';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MailService } from './service/mail.service';
-import { HandlebarsMailTemplateProvider } from './service/HandlebarsMailTemplateProvider.service';
+import { ConfigService } from '@nestjs/config';
+import { MailService } from './service/mailer.service';
 
+@Global() // 👈 global module
 @Module({
   imports: [
     MailerModule.forRootAsync({
-      imports: [ConfigModule],
+      // imports: [ConfigModule], // import module if not enabled globally
       useFactory: async (config: ConfigService) => ({
+        // transport: config.get("MAIL_TRANSPORT"),
+        // or
         transport: {
           host: config.get('MAIL_HOST'),
-          port: config.get('MAIL_PORT'),
-          secure: true,
+          secure: false,
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASSWORD'),
@@ -24,7 +25,7 @@ import { HandlebarsMailTemplateProvider } from './service/HandlebarsMailTemplate
           from: `"No Reply" <${config.get('MAIL_FROM')}>`,
         },
         template: {
-          dir: join(__dirname, 'email'),
+          dir: join(__dirname, 'templates'),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
@@ -34,7 +35,7 @@ import { HandlebarsMailTemplateProvider } from './service/HandlebarsMailTemplate
       inject: [ConfigService],
     }),
   ],
-  providers: [MailService, HandlebarsMailTemplateProvider],
-  exports: [MailService, HandlebarsMailTemplateProvider],
+  providers: [MailService],
+  exports: [MailService],
 })
 export class MailModule {}

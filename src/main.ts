@@ -3,8 +3,10 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './shared/main/app.module';
+import { config } from 'dotenv';
 
 async function bootstrap() {
+  config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Habilitando o CORS na aplicação
@@ -30,7 +32,7 @@ async function bootstrap() {
   );
 
   // Documentação Swagger
-  const config = new DocumentBuilder()
+  const init = new DocumentBuilder()
     .setTitle('API - VIRTUMED')
     .setDescription('APLICAÇÃO PARA MÉDICOS')
     .setVersion('1.0.0')
@@ -43,7 +45,7 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, init);
 
   SwaggerModule.setup('docs', app, document);
 
