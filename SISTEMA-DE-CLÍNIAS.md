@@ -84,6 +84,7 @@ O S-RES deve possuir um mecanismo de validação que emita uma mensagem de aviso
 a) O S-RES deve identificar o sujeito da atenção de forma unívoca e aderente às regras vigentes para o Cartão Nacional de Saúde (CNS).
 
 b) Campos mínimos no cadastro do paciente: 
+
     - [ ] Nome 
     - [ ] Nome social/apelido 
     - [ ] Nome da mãe
@@ -120,7 +121,7 @@ Condição: Para a modalidade de Receita Digital, esse requisito se aplica apena
 
 a) O S-RES deve gerar automaticamente um número de identificação no sistema (número de prontuário) para todo paciente cadastrado.
 
-   - [ ] O sistema gera automaticamente um número de identificação no sistema (número de prontuário) para cada paciente cadastrado
+  - [ ] O sistema gera automaticamente um número de identificação no sistema (número de prontuário) para cada paciente cadastrado
 
 ## 3. Identificação de Pacientes [ECF.03.03]
 
@@ -240,6 +241,148 @@ Condição: S-RES permite abrir mais de um prontuário simultaneamente.
 
 ---
 
+---
+
+---
+
+---
+
+---
+
+# ECF.17 - Estrutura, Metadados e Qualidade de Registros Clínicos
+
+## 1. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.01]
+
+**Identificação do profissional responsável pelo episódio/evento:**
+
+Todo registro realizado no S-RES deve identificar univocamente:
+  - [ ] O paciente ao qual o episódio/evento se refere.
+  - [ ] O profissional de saúde responsável pelo registro, quando aplicável.
+  - [ ] Identificação da instituição de saúde, quando aplicável.
+
+## 2. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.02]
+
+**Registro de tempo do armazenamento do evento no S-RES:**
+
+  - [ ] O S-RES deve registrar automaticamente a data/hora da entrada de qualquer registro no sistema.
+
+## 3. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.03]
+
+**Registro de tempo da ocorrência do evento:**
+
+ - [ ] O S-RES deve permitir o registro de eventos de forma retroativa de forma que o profissional possa indicar a data/hora em que o evento de fato ocorreu (por exemplo, registro de uma consulta ocorrida em momento de falha no fornecimento de energia elétrica à unidade prestadora de serviços).
+
+ - [ ] Todo registro de dados clínicos no prontuário do paciente deve oferecer uma opção para registro retroativo. Ao acionar tal opção, um campo editável para entrada de data/hora do evento deve ser oferecido.
+
+ - [ ] Para todo registro retroativo, o S-RES deve exigir a entrada de uma justificativa pelo usuário.
+
+ - [ ] O registro de tempo do evento deve ser validado para impedir que seja registrada uma data/hora superior à atual.
+
+ -  Caso o evento não seja registrado de forma retroativa, o S-RES deverá considerar que a data/hora de ocorrência do evento é a mesma do registro do evento no sistema.
+
+ - [ ] Para eventos registrados retroativamente, o S-RES deve sinalizar de forma destacada que o mesmo foi registrado a posteriori (com o texto 'registro retroativo", por exemplo), indicando a data/hora de ocorrência do evento e data/hora de seu registro no S-RES, tanto na exibição em tela quanto na impressão do prontuário.
+
+Nota: Opcionalmente, o S-RES pode oferecer uma funcionalidade que permita habilitar e desabilitar a permissão e realizar registros retroativos.
+
+## 4. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.04]
+
+**Cronologia de eventos:**
+
+  - [ ] O S-RES deve assegurar a cronologia dos eventos e informações, de forma que os registros sejam apresentados, tanto em tela quanto em impressão, ordenados cronologicamente de acordo com a data de ocorrência evento.
+
+## 5. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.05]
+
+**Validação de consistência cronológica**
+
+a) O S-RES deve realizar a validação de cronologia de dados ou informações que possuam registro de tempo dependentes entre si. Devem ser validados minimamente os seguintes cenários, quando aplicável:
+
+  - [ ] A data/hora de lançamento de um resultado de exame não deve ser anterior à data/hora de solicitação do mesmo; 
+  - [ ] A data/hora de administração de um medicamento não deve ser anterior à data/hora da prescrição; 
+  - [ ] A data/hora de óbito de um paciente não deve ser anterior à data/hora de seu nascimento;
+  - [ ] A data/hora de um evento clínico não deve ser anterior à data/hora da abertura do atendimento.
+
+b) Quando aplicável, essa validação deve ser realizada com base na data de ocorrência do evento e não na data do registro da informação no sistema, de forma a considerar a possibilidade de registro de eventos retroativos.
+
+---
+
+# ECF.18 - Direitos do Paciente
+
+## 1. Direitos do Paciente [ECF.18.03]
+
+**Registro do consentimento do paciente para teleatendimentos:**
+
+  - [ ] O sistema deve permitir a apresentação de um Termo de Consentimento Livre e Esclarecido (TCLE) específico ao paciente anteriormente ao teleatendimento.
+
+  - [ ] O sistema deve permitir que o paciente possa indicar se está ou não de acordo com um determinado TCLE. 
+
+  - [ ] Tal informação deve ficar registrada no prontuário do paciente vinculada ao respectivo teleatendimento.
+
+## 2. Direitos do Paciente [ECF.18.04]
+
+**Impressão do prontuário do paciente:**
+
+  - [ ] O S-RES deve permitir a impressão do prontuário do paciente por meio de um único comando, sem a necessidade de navegar entre diferentes telas ou partes do prontuário para impressão fracionada.
+
+  - [ ] O arquivo gerado deve indicar claramente em todas as páginas (por exemplo, por meio de um cabeçalho ou rodapé) a identificação do paciente (minimamente nome completo, sexo, data de nascimento e CPF) e da instituição de saúde que possui a guarda do prontuário (minimamente nome e CNPJ ou CNES).
+
+  - [ ] A funcionalidade de impressão do prontuário deve possuir um filtro para período de tempo (data inicial e data final) de forma a possibilitar a impressão parcial do prontuário do paciente.
+
+  - [ ] O arquivo gerado deverá atender à cronologia dos eventos, de forma que todos os registros estejam ordenados em ordem cronológica de acordo com a data do evento e não com a data de registro. 
+
+  - [ ] No arquivo gerado, todo campo não preenchido ou nulo deve ser omitido ou sinalizado por meio do preenchimento com um valor padrão, indicando que não houve preenchimento (por exemplo, "não preenchido").
+
+  - [ ] Todas as páginas do prontuário deverão ser numeradas no formato <número da página>/<total de páginas do prontuário>.
+
+  - [ ] Todos os documentos anexos ao prontuário do paciente, tais como laudos de exames, arquivos multimídia e termos de consentimento, deverão ser exportados juntamente com o prontuário (por exemplo, no corpo do prontuário ou em uma pasta separada de anexos). Caso os anexos sejam exportados em uma pasta ou arquivo separado, os mesmos deverão ser referenciados no documento exportado cronologicamente de acordo com o momento em que foram anexados ao prontuário do paciente.
+
+Nota 1: Em relação à cronologia, o S-RES pode agrupar registros que estão vinculados mantendo uma apresentação de forma consolidada (por exemplo, apresentar o resultado de um exame juntamente à solicitação do mesmo; balanço hídrico apresentado como uma tabela em série temporal, checagem de medicamentos apresentada juntamente com a prescrição; etc.). Entretanto, a data/hora de cada registro deve ser igualmente exibida.
+
+Nota 2: Este requisito se aplica mesmo a sistemas que não constituam um prontuário completo do paciente. Por exemplo, sistemas de prescrição eletrônica devem oferecer o recurso de impressão do conjunto completo de prescrições realizadas para um paciente.
+
+---
+
+# ECF.19 - Uso Secundário de Dados
+
+## 1. Interoperabilidade e Continuidade do Cuidado [ECF.19.01]
+
+**Parametrização de agravos de notificação compulsória:**
+
+  - [ ] O S-RES deve permitir a parametrização de agravos (diagnósticos) de notificação compulsória (comunicação obrigatória à uma autoridade de saúde) de acordo com a Portaria nº 264, de 17 de fevereiro de 2020 que altera a Portaria de Consolidação nº 4/GM/MS, de 28 de setembro de 2017 do Ministério de Saúde, ou outro documento oficial mais recente.
+
+  - [ ] Para cada diagnóstico, o S-RES deve permitir a indicação da periodicidade da notificação (imediata ou semanal) e autoridade de saúde para a qual a notificação deverá ser enviada (Ministério da Saúde, Secretaria Estadual de Saúde ou Secretaria Municipal de Saúde).
+
+## 2. Interoperabilidade e Continuidade do Cuidado [ECF.19.02]
+
+**Relatório para notificação compulsória de agravos:**
+
+  - [ ] O S-RES deve permitir a emissão de relatórios de agravos de notificação compulsória registrados no S-RES em um determinado período de tempo (por exemplo, últimas 24 horas ou últimos 7 dias). 
+
+  - [ ] Para cada agravo identificado, esses relatórios devem conter minimamente os seguintes dados: CPF, CNS, descrição do agravo (código CID), indicação se o agravo é suspeito ou confirmado, endereço (incluindo o CEP) do paciente, médico responsável pela suspeita ou diagnóstico (nome e CRM/UF), data/hora da registro do agravo no S-RES, data/hora da emissão do relatório e estabelecimento de saúde (CNES).
+
+  - [ ] O S-RES deve permitir a impressão do relatório em um formato aberto (por exemplo, PDF ou XML).
+
+---
+
+# ECF.20 - Interoperabilidade e Continuidade do Cuidado
+
+## 1. Interoperabilidade e Continuidade do Cuidado [ECF.20.04]
+
+**Recebimento adequado de dados:**
+
+Condição: Sistemas que podem operar de forma integrada a um Prontuário Eletrônico do Paciente (PEP).
+
+  - [ ] O S-RES deve garantir o recebimento adequado do PEP de quaisquer dados necessários para a realização de uma prescrição. Por exemplo, receber do PEP os dados de identificação do paciente, alergias, diagnósticos, dados de identificação do usuário logado, etc.
+
+## 2. Interoperabilidade e Continuidade do Cuidado [ECF.20.05]
+
+**Envio adequado de dados:**
+
+Condição: Sistemas que podem operar de forma integrada a um Prontuário Eletrônico do Paciente (PEP).
+
+  - [ ] O S-RES deve garantir o envio adequado para o PEP de quaisquer dados necessários para o registro de uma prescrição. Por exemplo, envio do documento correspondente à prescrição, permitindo que o mesmo possa ser armazenado diretamente no PEP.
+
+---
+
 # ECF.21 - Teleatendimento
 
 ## 1. Teleatendimento [ECF.21.01]
@@ -300,13 +443,12 @@ Nota 2: Opcionalmente, o S-RES pode permitir que o profissional indique a cidade
 
 ## 7. Videoconferência [ECF.22.07]
 
-**Sessões simultâneas de videoconferências:**
+**Vínculo da sessão de videoconferência ao prontuário:**
 
-  - [ ] O sistema deve permitir que diferentes sessões de videoconferência possam ocorrer simultaneamente (por exemplo, diferentes salas de videoconferência permitindo que diferentes teleatendimentos ocorram na mesma data/hora), envolvendo diferentes pacientes e profissionais.
+  - [ ] Todo registro de sessão de videoconferência referente a um paciente deve ficar vinculado ao prontuário do mesmo.
 
-## 12. Videoconferência [ECF.22.012]
+## 8. Videoconferência [ECF.22.12]
 
-**Sessões simultâneas de videoconferências:**
+**Inicialização da videoconferência a partir da agenda:**
 
-  - [ ] O sistema deve permitir que diferentes sessões de videoconferência possam ocorrer simultaneamente (por exemplo, diferentes salas de videoconferência permitindo que diferentes teleatendimentos ocorram na mesma data/hora), envolvendo diferentes pacientes e profissionais.
-
+  - [ ] O sistema deve permitir a inicialização de uma videoconferência com o referido paciente a partir do agendamento do teleatendimento, caso aplicável.

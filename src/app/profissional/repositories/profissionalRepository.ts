@@ -6,7 +6,7 @@ import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 import * as bcrypt from 'bcrypt';
-import IUserRepository from './IUserRepository';
+import IUserRepository from './IProfissionalRepository';
 
 @Injectable()
 export class UserRepository implements IUserRepository {

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
-import { UserRepository } from '../repositories/userRepository';
+import { UserRepository } from '../repositories/profissionalRepository';
 import { User } from 'src/entities/user.entities';
 
 @Injectable()

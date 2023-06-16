@@ -9,6 +9,7 @@ import { AdminModule } from 'src/app/admin/admin.module';
 import { AppointmentModule } from 'src/app/appointments/appointment.module';
 import { UserTokenModule } from 'src/app/user-token/user-token.module';
 import { MailModule } from 'src/app/mail/mailer.module';
+import { ProfissionalModule } from 'src/app/profissional/profissional.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { MailModule } from 'src/app/mail/mailer.module';
     PrismaModule,
     AdminModule,
     AppointmentModule,
+    ProfissionalModule,
     UserModule,
     UserTokenModule,
     SecurityModule,
