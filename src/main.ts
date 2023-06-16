@@ -3,10 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './shared/main/app.module';
-import { config } from 'dotenv';
 
 async function bootstrap() {
-  config();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Habilitando o CORS na aplicação

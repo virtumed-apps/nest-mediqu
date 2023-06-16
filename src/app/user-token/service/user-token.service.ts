@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UserTokenRepository } from '../repositories/userTokenRepository';
 import { addMinutes, isAfter } from 'date-fns';
 import * as bcrypt from 'bcrypt';
+import { handleError } from 'src/shared/error/handle-error.util';
 
 interface IRequest {
   email: string;
@@ -37,6 +38,7 @@ export class UserTokenService {
 
     return data;
   }
+
   async resetPassword({ token, password }: IReset): Promise<void> {
     const userToken = await this.userTokenRepository.findByToken(token);
 
@@ -54,11 +56,25 @@ export class UserTokenService {
     const compareDate = addMinutes(tokenCreatedAt, 2);
 
     if (isAfter(Date.now(), compareDate)) {
-      throw new Error('Token expired.');
+      throw new HttpException('Token expired.', HttpStatus.BAD_REQUEST);
+    }
+
+    // Verificar se a nova senha é igual a alguma senha antiga
+    const isPasswordUsedBefore =
+      await this.userTokenRepository.isPasswordUsedBefore(user.id, password);
+    if (isPasswordUsedBefore) {
+      throw handleError(Error('Cannot reuse old passwords.'));
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    await this.userTokenRepository.updateUser(user.id, hashPassword);
+    // Redefinir as propriedades accountLocked e failedLoginAttempts
+    await this.userTokenRepository.updateUser(user.id, hashPassword, {
+      accountLocked: false,
+      failedLoginAttempts: 0,
+    });
+
+    // Adicionar a nova senha à lista de senhas antigas
+    await this.userTokenRepository.addOldPassword(user.id, password);
   }
 }

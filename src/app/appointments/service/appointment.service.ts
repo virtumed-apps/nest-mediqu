@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { Appointment } from 'src/entities/appointment.entities';
 import { ICreateAppointment } from '../swagger/ICreateAppointment/create-appointment.dto';
 import {
-  startOfHour,
   isBefore,
   format,
   getHours,
   isAfter,
   getDaysInMonth,
   getDate,
+  getMinutes,
 } from 'date-fns';
 import { handleError } from 'src/shared/error/handle-error.util';
 import AppointmentRepository from '../repositories/appointmentRepository';
@@ -27,7 +27,7 @@ interface IRequestPatient {
 }
 
 type IResponseDay = Array<{
-  hour: number;
+  hour: string;
   available: boolean;
 }>;
 
@@ -41,7 +41,7 @@ export class AppointmentService {
   constructor(private readonly appointmentRepository: AppointmentRepository) {}
 
   async createAppointment(data: ICreateAppointment): Promise<Appointment> {
-    const appointmentDate = startOfHour(new Date(data.date));
+    const appointmentDate = new Date(data.date);
 
     if (isBefore(appointmentDate, Date.now())) {
       throw handleError(
@@ -63,6 +63,15 @@ export class AppointmentService {
 
     if (findAppoitmentInSameDate) {
       throw handleError(new Error('This appointment is already booked'));
+    }
+
+    const minutes = appointmentDate.getMinutes();
+    if (minutes % 5 !== 0) {
+      throw handleError(
+        new Error(
+          'You can only schedule appointments at intervals of 5 minutes',
+        ),
+      );
     }
 
     const dateFormatted = format(appointmentDate, "dd/MM/yyyy 'às' HH:mm'h'");
@@ -121,25 +130,35 @@ export class AppointmentService {
         year,
       });
 
-    const hourStart = 0;
+    const minutesPerHour = 60;
+    const interval = 30;
 
     const eachHourArray = Array.from(
-      { length: 24 },
-      (_, index) => index + hourStart,
+      { length: 24 * (minutesPerHour / interval) },
+      (_, index) => {
+        const hour = Math.floor(index / (minutesPerHour / interval));
+        const minute = (index % (minutesPerHour / interval)) * interval;
+        return { hour, minute };
+      },
     );
 
     const currentDate = new Date(Date.now());
 
-    const availability = eachHourArray.map((hour) => {
-      const hasAppointmentInHour = appointments.find(
-        (appointment) => getHours(appointment.date) === hour,
-      );
+    const availability = eachHourArray.map(({ hour, minute }) => {
+      const hasAppointmentInInterval = appointments.find((appointment) => {
+        const appointmentHour = getHours(appointment.date);
+        const appointmentMinute = getMinutes(appointment.date);
+        return appointmentHour === hour && appointmentMinute === minute;
+      });
 
-      const compareDate = new Date(year, month - 1, day, hour);
+      const compareDate = new Date(year, month - 1, day, hour, minute);
 
       return {
-        hour,
-        available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
+        hour: `${hour.toString().padStart(2, '0')}:${minute
+          .toString()
+          .padStart(2, '0')}`,
+        available:
+          !hasAppointmentInInterval && isAfter(compareDate, currentDate),
       };
     });
 

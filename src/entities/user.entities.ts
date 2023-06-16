@@ -8,6 +8,8 @@ export class User {
   active: boolean;
   avatar_url: string;
   role: Role;
+  accountLocked: boolean; // Novo campo adicionado
+  failedLoginAttempts: number; // Adicione esta linha
   createdAt?: Date;
   updatedAt?: Date;
 }
