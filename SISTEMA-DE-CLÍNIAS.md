@@ -192,7 +192,7 @@ Nota: Para alergias e intolerâncias e diagnósticos, pode-se utilizar mecanismo
 Condição: S-RES permite abrir mais de um prontuário simultaneamente.
 
   - [ ] O S-RES deve manter apenas o primeiro prontuário aberto com permissão de edição pelo usuário, sendo que os demais deverão ser abertos exclusivamente em modo somente leitura. 
-
+  
   - [ ] O S-RES deverá ainda exibir de forma clara e explícita que o status desses prontuários adicionais é de somente leitura.
 
 ---
@@ -239,13 +239,372 @@ Condição: S-RES permite abrir mais de um prontuário simultaneamente.
 
 ---
 
----
+# ECF.07 - Documentação Clínica
+
+## 1. Documentação Clínica [ECF.07.02]
+
+**Registro do contexto socioeconômico do paciente:**
+
+a) O S-RES deve permitir o registro do contexto socioeconômico do paciente.
+
+b) O S-RES deve permitir registrar minimamente os seguintes dados:
+  - [ ] Raça/cor (branca, preta, parda, amarela, indígena e "sem informação");
+  - [ ] Etnia indígena, se aplicável;
+  - [ ] Religião;
+  - [ ] Escolaridade (Não sabe ler/escrever, Alfabetizado, 1 grau incompleto, 1 grau completo, 2 grau incompleto, 2 grau completo, Superior incompleto, Superior completo, Especialização/residência, Mestrado, Doutorado);
+  - [ ] Indicação se a moradia do paciente encontra-se em área urbana ou rural;
+  - [ ] Indicação se o paciente encontra-se em situação de rua;
+  - [ ] Indicação se o paciente encontra-se em vulnerabilidade social (por exemplo, mora em local sem saneamento básico);
+  - [ ] Ocupação de acordo com a Classificação Brasileira de Ocupações (CBO) e local de trabalho;
+  - [ ] Observações em texto livre.
+
+## 2. Documentação Clínica [ECF.07.03]
+
+**Registro de imunização:**
+
+a) O S-RES deve permitir o registro de imunizações do paciente.
+
+b) O S-RES deve permitir o registro de minimamente os seguintes dados:
+  - [ ] Nome do imunobiológico;
+  - [ ] Data da administração;
+  - [ ] Indicação se esse registro é referente à uma administração de imunobiológico anterior ao presente atendimento (situação vacinal anterior que ainda não estava registrada no sistema);
+  - [ ] Dose (dose única, primeira dose, segunda dose, terceira dose, quarta dose, primeiro reforço ou segundo reforço);
+  - [ ] Informações adicionais (texto livre).
+
+## 3. Documentação Clínica [ECF.07.04]
+
+**Registro de alergias e intolerâncias:**
+
+a) O S-RES deve permitir o registro de alergias e intolerâncias para pacientes em campo específico.
+
+b) O S-RES deve permitir a visualização da lista de alergias e intolerâncias registradas para um paciente.
+
+## 3. Documentação Clínica [ECF.07.05]
+
+**Registro estruturado de alergias para sistemas de prescrição**
+
+a) O S-RES deve permitir o registro de alergias e intolerâncias para pacientes de forma estruturada.
+
+b) No momento de registro de alergia ou intolerância, o S-RES deve permitir indicar minimamente as seguintes informações:
+  - [ ] Princípio ativo
+  - [ ] Reação adversa sofrida pelo paciente;
+  - [ ] Gravidade da reação (leve, moderada ou grave);
+  - [ ] Estado (ativo ou inativo);
+
+c) O S-RES deve permitir que, minimamente para princípios ativos, o registro de substâncias possa ser realizado a partir de uma tabela de domínio previamente cadastrada.
+
+d) O S-RES deve permitir que o estado da alergia ou intolerância seja alterado, registrando a data/hora e responsável pela mudança do estado.
+
+## 4. Documentação Clínica [ECF.07.06]
+
+**Indicação da ausência de alergias e intolerâncias:**
+
+a) O S-RES deve permitir a indicação da ausência de alergias e intolerâncias de forma estruturada para um determinado paciente (por exemplo, indicar "paciente nega alergia" ou ainda "não há alergias conhecidas").
+
+b) O S-RES deve permitir o registro de alergias e intolerâncias mesmo após um registro de ausência (por exemplo, havia sido registrado que o paciente nega alergia, mas posteriormente descobriu-se que o mesmo possui alergia à dipirona). Nesse caso, o S-RES deverá inativar automaticamente o registro de anterior que indicava ausência de alergia ou intolerância.
+
+## 5. Documentação Clínica [ECF.07.07]
+
+**Registro de sinais vitais:**
+
+a) O S-RES deve permitir o registro minimamente dos seguintes sinais vitais:
+  - [ ] Pressão Arterial Sistólica (PAS);
+  - [ ] Pressão Arterial Diastólica (PAD);
+  - [ ] Temperatura corporal;
+  - [ ] Frequência cardíaca;
+  - [ ] Frequência respiratória;
+  - [ ] Saturação de oxigênio;
+  - [ ] Glicemia capilar;
+  - [ ] Dor;
+  - [ ] Observação em texto livre.
+
+b) Todos os dados de sinais vitais devem estar associados à uma unidade de medida (por exemplo, mmHg para PAS e PAD).
+
+## 6. Documentação Clínica [ECF.07.08]
+
+**Registro de medidas antropométricas:**
+
+a) O S-RES deve permitir o registro minimamente das seguintes medidas antropométricas:
+  - [ ] Peso;
+  - [ ] Altura;
+  - [ ] Índice de Massa Corporal (IMC), calculado de forma automática pelo sistema;
+  - [ ] Superfície corpórea, calculada de forma automática pelo sistema;
+  - [ ] Circunferência abdominal;
+  - [ ] Circunferência cefálica;
+  - [ ] Observação em texto livre.
+
+b) Todas as medidas antropométricas devem estar associados à uma unidade de medida (por exemplo, kg para peso).
+
+## 7. Documentação Clínica [ECF.07.09]
+
+**Registro de medidas antropométricas para sistemas de prescrição:**
+
+a) O S-RES deve permitir o registro minimamente das seguintes medidas antropométricas:
+  - [ ] Peso;
+  - [ ] Altura;
+  - [ ] Observação em texto livre.
+
+b) Todas as medidas antropométricas devem estar associados à uma unidade de medida (por exemplo, kg para peso).
+
+## 8. Documentação Clínica [ECF.07.12]
+
+**Dados da anamnese:**
+
+O S-RES deve permitir o registro de anamnese do paciente atendendo à plenitude dos dados clínicos, permitindo o registro de minimamente os seguintes dados: 
+  - [ ] Queixa do paciente/motivo da consulta;
+  - [ ] História da doença atual;
+  - [ ] Histórico familiar e pessoal;
+  - [ ] Exame físico;
+  - [ ] Hipótese diagnóstica;
+  - [ ] Plano terapêutico.
+
+
+## 9. Documentação Clínica [ECF.07.13]
+
+**Dados da anamnese conforme SOAP:**
+
+O S-RES deve permitir que os dados de anamnese sejam estruturados de acordo com a metodologia SOAP (Subjetivo, Objetivo, Avaliação e Plano).
+
+## 10. Documentação Clínica [ECF.07.14]
+
+**Registro de queixas utilizando CIAP2:**
+
+a) O S-RES deve permitir o registro de queixas do paciente/motivos de consulta de forma estruturada a partir de uma lista baseada em uma ou mais classificações ou terminologias padrão.
+
+b) O S-RES deve permitir minimamente o uso da Classificação Internacional de Assistência Primária (CIAP) em sua versão mais recente.
+
+## 10. Documentação Clínica [ECF.07.15]
+
+**Registro estruturado de diagnósticos:**
+
+a) O S-RES deve permitir o registro de um ou mais diagnósticos e hipóteses diagnósticas de forma estruturada a partir de uma lista previamente cadastrada ou importada (CID10, por exemplo).
+
+b) O sistema deve permitir a indicação se o diagnóstico é suspeito ou confirmado. O S-RES deve ainda permitir atualizar o estado do diagnóstico (de suspeito para confirmado, por exemplo).
+
+c) O sistema deve permitir indicar se o diagnóstico é principal ou secundário.
+
+d) O sistema deve permitir indicar o estado atual do diagnóstico (ativo ou inativo). O S-RES deve ainda permitir atualizar o estado do diagnóstico (de ativo para inativo, por exemplo).
+
+## 11. Documentação Clínica [ECF.07.16]
+
+**Registro de diagnósticos médicos com base no CID:**
+
+a) O S-RES deve permitir o registro de diagnósticos e hipóteses diagnósticas médicos de forma estruturada a partir de uma lista baseada em uma classificação ou terminologia padrão.
+
+b) O S-RES deve permitir minimamente o uso da Classificação Internacional de Doenças (CID) em sua versão mais recente exigida pela legislação.
+
+## 12. Documentação Clínica [ECF.07.17]
+
+**Registro de diagnósticos com base em mais de uma terminologia:**
+
+a) O S-RES deve permitir o registro de diagnósticos e hipóteses diagnósticas de forma estruturada a partir de uma lista baseada em uma ou mais classificações ou terminologias padrão.
+
+b) O S-RES deve permitir minimamente o uso da Classificação Internacional de Doenças (CID) em sua versão mais recente exigida pela legislação e Classificação Internacional de Assistência Primária (CIAP) em sua versão mais recente.
+
+## 13. Documentação Clínica [ECF.07.22]
+
+**Evolução médica:**
+
+O S-RES deve permitir o registro de evolução médica.
+
+## 14. Documentação Clínica [ECF.07.24]
+
+**Registro de órteses e próteses:**
+
+O S-RES deve permitir o registro de órteses e próteses para o paciente.
+
+## 16. Documentação Clínica [ECF.07.25]
+
+**Registro de atestado:**
+
+O S-RES deve permitir a emissão de atestados para pacientes.
+
+## 17. Documentação Clínica [ECF.07.27]
+
+**Solicitação de encaminhamentos:**
+
+a) O S-RES deve permitir a solicitação de encaminhamentos para pacientes.
+
+b) O S-RES deve oferecer minimamente os seguintes campos no formulário de encaminhamento.
+  - [ ] Nome completo do paciente;
+  - [ ] Especialidade médica ou categoria profissional;
+  - [ ] Campo texto livre para descrição e motivo do encaminhamento;
+  - [ ] Nome completo do profissional responsável;
+  - [ ] Conselho profissional e respectivo número de registro e Unidade Federativa do solicitante;
+  - [ ] Endereço da instituição;
+  - [ ] Espaço para assinatura do profissional responsável.
+
+## 18. Documentação Clínica [ECF.07.30]
+
+**Aprovação de registros por preceptoria:**
+
+a) O S-RES deve dar suporte ao processo de preceptoria.
+
+b) O S-RES deve garantir que todos os dados clínicos registrados por estudantes ou profissionais de saúde em treinamento (como internos, pós-graduandos, residentes, etc.) possam ser atestados/validados pelo profissional de ensino responsável. Por exemplo, preceptor validando entradas de pós-graduandos em treinamento em ambiente de ensino.
+
+c) Apenas um profissional com perfil de acesso de preceptor poderá efetuar atestação ou validação desses dados.
+
+d) Todos os registros ainda não validados deverão ser exibidos apenas ao profissional responsável e respectivos preceptores e não devem ser passíveis de impressão no prontuário completo.
+
+e) O S-RES deve armazenar e permitir a visualização, tanto em tela quanto impressão, do registro de tempo e do profissional em treinamento responsável pelo registro.
+
+## 19. Documentação Clínica [ECF.07.32]
+
+**Registro de óbito:**
+
+  - [ ] O S-RES deve permitir o registro do óbito do paciente com campos para indicação de data e causa de óbito, permitindo o registro do CID associado e número da declaração de óbito.
 
 ---
 
----
+# ECF.10 - Prescrição Eletrônica
+
+## 1. Prescrição Eletrônica [ECF.10.01]
+
+**Emissão de receita não estruturada:**
+
+  - [ ] O S-RES deve possuir uma funcionalidade para elaboração de receita de forma não estruturada (texto livre), de forma a permitir a prescrição de princípios ativos e medicamentos que não serão dispensados e/ou administrados na instituição.
+
+## 2. Prescrição Eletrônica [ECF.10.02]
+
+**Texto padrão para receita:**
+
+a) O S-RES deve permitir a criação de um ou mais textos padrões para receitas, permitindo indicar ainda um título para cada texto padrão.
+
+b) O S-RES deve permitir que o profissional selecione um texto padrão específico como base para uma receita, permitindo ainda a edição do texto.
+
+## 3. Prescrição Eletrônica [ECF.10.03]
+
+**Emissão de receita estruturada:**
+
+a) O S-RES deve possuir uma funcionalidade para elaboração de receita de forma estruturada, de forma a permitir a prescrição de princípios ativos e medicamentos que não serão dispensados e/ou administrados na instituição.
+
+b) O S-RES deve permitir que o usuário busque por nome, a partir de uma lista de seleção, os princípios ativos e/ou medicamentos que serão prescritos. Tal lista de seleção deve carregar a lista de princípios ativos e/ou medicamentos cadastrada previamente.
+
+c) O S-RES deve permitir a prescrição de princípios ativos e/ou medicamentos que não estejam cadastrados ou padronizados pela instituição (por exemplo, medicamentos manipulados não disponíveis na instituição).
+
+d) Para cada princípio ativo e/ou medicamento prescrito, o S-RES deve permitir a indicação estruturada de minimamente as seguintes informações: 
+  - [ ] Nome do princípio ativo/medicamento;
+  - [ ] Forma farmacêutica (por exemplo, comprimido, ampola, etc.);
+  - [ ] Dose e respectiva unidade de medida;
+  - [ ] Frequência (8 em 8 horas, por exemplo);
+  - [ ] Início do tratamento;
+  - [ ] Duração do tratamento (dias de utilização);
+  - [ ] Indicação se o medicamento será de uso contínuo;
+  - [ ] Via de administração;
+  - [ ] Prazo de utilização;
+  - [ ] Observação em texto livre.
+
+## 4. Prescrição Eletrônica [ECF.10.04]
+
+**Impressão de receita:**
+
+a) A impressão de receitas deve incluir automaticamente as seguintes informações:
+  - [ ] Nome completo do paciente;
+  - [ ] Nome completo do profissional responsável;
+  - [ ] Conselho profissional e respectivo número de registro e Unidade Federativa do prescritor;
+  - [ ] Local de atendimento e respectivo CNES;
+  - [ ] Endereço completo da instituição;
+  - [ ] Número de telefone para contato com a instituição;
+  - [ ] Data/hora da emissão prescrição;
+  - [ ] Espaço para assinatura e carimbo do profissional responsável.
+
+b) Para impressão de receitas de controle especial, o S-RES deve ainda incluir as seguintes informações:
+  - [ ] Endereço completo do paciente.
+
+c) Para impressão de receitas de antimicrobianos, o S-RES deve ainda incluir as seguintes informações:
+  - [ ] Idade do paciente;
+  - [ ] Sexo do paciente.
+
+## 5. Prescrição Eletrônica [ECF.10.19]
+
+**Solicitação de exames e procedimentos:**
+
+a) O S-RES deve possuir uma funcionalidade para elaboração de pedidos de exames e procedimento para o paciente.
+
+b) O S-RES deve oferecer minimamente um campo de texto livre.
+
+## 6. Prescrição Eletrônica [ECF.10.20]
+
+**Solicitação estruturada de exames e procedimentos:**
+
+a) O S-RES deve possuir uma funcionalidade para prescrição estruturada de exames e procedimentos.
+
+b) O S-RES deve permitir que o usuário busque por nome, a partir de uma lista de seleção, os exames ou procedimentos que serão prescritos. Tal lista de seleção deve carregar uma lista de exames e procedimentos cadastrada previamente.
+
+c) Para cada item solicitado, o S-RES deve permitir a indicação estruturada de minimamente as seguintes informações: 
+  - [ ] Nome do exame ou procedimento;
+  - [ ] Código da tabela de referência (SIGTAP ou TUSS, por exemplo);
+  - [ ] Caráter do atendimento (urgência ou eletivo);
+  - [ ] Observação em texto livre.
 
 ---
+
+# ECF.13 - Gerenciamento de Solicitações e Resultados de Exames e Procedimentos
+
+## 1. Gerenciamento de Solicitações e Resultados de Exames e Procedimentos [ECF.12.02]
+
+**Entrada de resultados de exames não vinculados à uma solicitação no sistema:**
+
+a) O S-RES deve permitir o registro de resultados de exames não solicitados previamente no S-RES, de forma que não seja necessário haver uma solicitação registrada previamente no sistema para que o resultado do exame possa ser documentado.
+
+b) O S-RES deve permitir indicar minimamente os seguintes dados:
+  - [ ] Nome do exame realizado (não necessário quando o resultado estiver vinculado à uma solicitação previamente registrada no S-RES);
+  - [ ] Data da realização do exame;
+  - [ ] Campo para indicação do resultado, conclusão ou parecer diagnóstico.
+  - [ ] Anexo de um ou mais arquivos (por exemplo, laudo em PDF).
+
+---
+
+# ECF.14 - Ciclo de Vida de Registros Clínicos
+
+## 1. Apoio à Decisão Clínica [ECF.14.04]
+
+**Parametrização de ação a ser tomada para alertas de alergia:**
+
+a) O S-RES deve possuir uma funcionalidade administrativa que permita parametrizar a ação a ser tomada no momento em que uma regra de alergia/intolerância é disparada na prescrição de medicamentos.
+
+b) O S-RES deve permitir parametrizar minimamente as seguintes ações:
+  - [ ] Apenas notificação;
+  - [ ] Notificação seguida de justificativa para continuidade do registro;
+  - [ ] Notificação e bloqueio da continuidade do registro.
+
+c) O S-RES deve permitir parametrizar diferentes ações para diferentes severidades (por exemplo, parametrizar que alergias e intolerâncias de baixa severidade devem disparar a ação de apenas notificação).
+
+## 2. Apoio à Decisão Clínica [ECF.14.05]
+
+**Alerta de alergia na prescrição eletrônica:**
+
+a) Durante o registro de uma prescrição de medicamentos, o S-RES deve verificar a existência de alergia ou intolerância a um dos princípios ativos existentes nos medicamentos prescritos.
+
+b) A verificação de alergia/intolerância deve considerar os princípios ativos e não o nome do medicamento, uma vez que um medicamento pode ter mais de um princípio ativo (por exemplo, paciente é alérgico a dipirona e um buscopan composto está sendo prescrito).
+
+c) Caso seja verificada a existência de alergia/intolerância, o S-RES deverá emitir uma mensagem conforme parametrização da ação a ser tomada, quando aplicável, informando sobre a existência da alergia/intolerância.
+
+d) A mensagem emitida deve indicar minimamente a classificação (alergia ou intolerância), substância prescrita a qual o paciente é alérgico/intolerante, severidade e reação sofrida pelo paciente.
+
+---
+
+# ECF.16 - Ciclo de Vida de Registros Clínicos
+
+## 1. Ciclo de Vida de Registros Clínicos [ECF.16.01]
+
+**Controle do status de registros em aberto:**
+
+Condição: S-RES permite a existência de registros de dados clínicos ou atendimentos não finalizados/definitivos (registros em aberto).
+
+  - [ ] Todo registro clínico em aberto deve permitir que o profissional o retome e continue com a entrada de dados, permitindo a finalização/liberação do documento.
+
+  - [ ] O S-RES deve exibir claramente (por exemplo, utilizando texto, cores e símbolos) o status de um determinado registro, indicando se o mesmo encontra-se em aberto (não finalizado) ou completado (já finalizado e liberado).
+
+  - [ ] O S-RES não deve permitir que outros profissionais que não o próprio autor possam visualizar um registro em aberto.
+
+  - [ ] Caso um determinado profissional deixe um registro em aberto, o S-RES deve notificá-lo no momento em que o mesmo sair da tela em que o registro está sendo apresentado, mesmo em caso de logoff ou fechamento da aplicação.
+
+  - [ ] Após o login por um profissional de saúde, o S-RES deve apresentar uma lista com todos os registros em aberto existentes no sistema e que são de responsabilidade desse profissional, possibilitando a abertura do documento a partir da lista apresentada. O sistema deve ainda permitir o acesso à essa lista por vontade do profissional a qualquer momento.
+
+  - [ ] O S-RES deve registrar e exibir tanto a data/hora de abertura do registro quanto a data/hora de finalização/liberação do mesmo.
+
+Nota: Consideram-se como não finalizados ou em aberto os registros que foram salvos pelo profissional em um prontuário mas ainda não foram concluídos ou liberados pelo mesmo, permitindo a continuidade da entrada de dados no registro em outro momento.
 
 ---
 
@@ -270,17 +629,17 @@ Todo registro realizado no S-RES deve identificar univocamente:
 
 **Registro de tempo da ocorrência do evento:**
 
- - [ ] O S-RES deve permitir o registro de eventos de forma retroativa de forma que o profissional possa indicar a data/hora em que o evento de fato ocorreu (por exemplo, registro de uma consulta ocorrida em momento de falha no fornecimento de energia elétrica à unidade prestadora de serviços).
+  - [ ] O S-RES deve permitir o registro de eventos de forma retroativa de forma que o profissional possa indicar a data/hora em que o evento de fato ocorreu (por exemplo, registro de uma consulta ocorrida em momento de falha no fornecimento de energia elétrica à unidade prestadora de serviços).
 
- - [ ] Todo registro de dados clínicos no prontuário do paciente deve oferecer uma opção para registro retroativo. Ao acionar tal opção, um campo editável para entrada de data/hora do evento deve ser oferecido.
+  - [ ] Todo registro de dados clínicos no prontuário do paciente deve oferecer uma opção para registro retroativo. Ao acionar tal opção, um campo editável para entrada de data/hora do evento deve ser oferecido.
 
- - [ ] Para todo registro retroativo, o S-RES deve exigir a entrada de uma justificativa pelo usuário.
+  - [ ] Para todo registro retroativo, o S-RES deve exigir a entrada de uma justificativa pelo usuário.
 
- - [ ] O registro de tempo do evento deve ser validado para impedir que seja registrada uma data/hora superior à atual.
+  - [ ] O registro de tempo do evento deve ser validado para impedir que seja registrada uma data/hora superior à atual.
 
- -  Caso o evento não seja registrado de forma retroativa, o S-RES deverá considerar que a data/hora de ocorrência do evento é a mesma do registro do evento no sistema.
+  - [ ] Caso o evento não seja registrado de forma retroativa, o S-RES deverá considerar que a data/hora de ocorrência do evento é a mesma do registro do evento no sistema.
 
- - [ ] Para eventos registrados retroativamente, o S-RES deve sinalizar de forma destacada que o mesmo foi registrado a posteriori (com o texto 'registro retroativo", por exemplo), indicando a data/hora de ocorrência do evento e data/hora de seu registro no S-RES, tanto na exibição em tela quanto na impressão do prontuário.
+  - [ ] Para eventos registrados retroativamente, o S-RES deve sinalizar de forma destacada que o mesmo foi registrado a posteriori (com o texto 'registro retroativo", por exemplo), indicando a data/hora de ocorrência do evento e data/hora de seu registro no S-RES, tanto na exibição em tela quanto na impressão do prontuário.
 
 Nota: Opcionalmente, o S-RES pode oferecer uma funcionalidade que permita habilitar e desabilitar a permissão e realizar registros retroativos.
 
@@ -302,6 +661,79 @@ a) O S-RES deve realizar a validação de cronologia de dados ou informações q
   - [ ] A data/hora de um evento clínico não deve ser anterior à data/hora da abertura do atendimento.
 
 b) Quando aplicável, essa validação deve ser realizada com base na data de ocorrência do evento e não na data do registro da informação no sistema, de forma a considerar a possibilidade de registro de eventos retroativos.
+
+## 6. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.06]
+
+**Padronização de unidades de medidas:**
+
+  - [ ] O S-RES deve adotar unidades de medida padrão para registro e exibição de dados numéricos e quantificáveis. Por exemplo, mmHg para pressão sanguínea e quilogramas para peso corporal.
+
+## 7. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.07]
+
+**Regras para unidades de medidas:**
+
+  a) Todo dado numérico ou quantificável associado à uma unidade de medida deve ser apresentado, tanto em tela quanto impressão, juntamente à sua respectiva unidade.
+
+  b) A unidade de medida associada a um dado numérico ou quantificável registrado no S-RES deve ser gravada no banco de dados e vinculada a este dado.
+
+## 8. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.10]
+
+**Captura de códigos padronizados:**
+
+  - [ ] Para todo código padronizado registrado no S-RES a partir de classificações e terminologias (CID, por exemplo), o S-RES deve registrar em banco de dados de forma estruturada em atributos específicos minimamente os seguintes dados: o nome (ou sigla), versão/edição e idioma do sistema de classificação/codificação utilizado, seguidos do código e termo por extenso originais. Exemplo: CID (nome) Edição 10 (versão) Português (idioma) A95.0 (código) Febre Amarela Silvestre (termo).
+
+## 9. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.11]
+
+**Resolução de imagens para interpretação clínica:**
+
+  - [ ] Ao ser solicitada a exibição de uma imagem médica ou odontológica registrada no RES, o S-RES deve ter a opção de informar o usuário sobre a resolução da imagem, ou seja, a matriz de pixels/voxeis, o número de bits de cores e número de quadros (no caso de modo cine).
+
+## 10. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.12]
+
+**Independência dos dados e do código do S-RES:**
+
+  - [ ] O S-RES deve armazenar parâmetros, configurações, classificações, codificações ou terminologias em banco de dados e não internamente às linhas de código da aplicação (hardcode). Por exemplo, período máximo de validade de senha; período máximo de inatividade para bloqueio de sessão; tabelas de domínio de campos demográficos (sexo, religião, naturalidade); codificações de terminologias externas; valores limites de variáveis quantitativas para validação ou ainda regras de apoio à decisão clínica.
+
+## 11. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.15]
+
+**Corretude funcional:**
+
+  - [ ] Durante a auditoria do S-RES, deve ser possível executar todos os testes referentes às funcionalidades delimitadas pelo escopo da certificação sem a ocorrência de defeitos, erros ou falhas.
+
+## 12. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.16]
+
+**Validação de dados estruturados:**
+
+a) O S-RES deve implementar regras de validação de formato e conteúdo de dados estruturados. Deverão ser realizadas minimamente as seguintes validações:
+
+  - [ ] CPF validado de acordo com seu dígito verificador;
+  - [ ] CNS validado de acordo com seu dígito verificador;
+  - [ ] CNES validado de acordo com o número de caracteres;
+  - [ ] Registro de tempo (data e hora) validado de acordo com o calendário gregoriano (por exemplo, 31/02/2010 seria uma data inválida).
+
+b) O S-RES deve impedir o registro de dados constatados como inválidos.
+
+Nota: Caso o S-RES receba esses dados a partir de sistemas externos, os mesmos deverão ser igualmente validados.
+
+## 13. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.17]
+
+**Compatibilidade retroativa:**
+
+Condição: Existir uma versão anterior do mesmo S-RES já certificada pelo processo SBIS.
+
+  - [ ] O Manual do S-RES deve conter informações sobre a compatibilidade de sua arquitetura em relação à última versão (imediatamente anterior) do S-RES certificado pelo processo SBIS, de forma que este possa processar os dados registrados em tal versão. 
+
+## 14. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.18]
+
+**Idioma do S-RES:**
+
+  - [ ] Todos os dados e informações exibidas e controladas pelo S-RES (por exemplo, rótulos, mensagens controladas pelo S-RES, títulos de tela, descritivos, menus, etc), tanto em tela quanto em impressões, deverão obrigatoriamente estar no idioma português do Brasil. 
+
+## 15. Estrutura, Metadados e Qualidade de Registros Clínicos [ECF.17.19]
+
+**Mensagens do sistema:**
+
+  - [ ] Todas as mensagens sob controle do S-RES devem ser apresentadas em linguagem não técnica ao usuário, em português do Brasil. Mensagens técnicas (sistemas operacionais, banco de dados, componentes de segurança, etc) ou em outros idiomas e que possam ser tratadas pelo S-RES não devem ser apresentadas em seu conteúdo original.
 
 ---
 
@@ -433,13 +865,11 @@ Nota 2: Opcionalmente, o S-RES pode permitir que o profissional indique a cidade
 
   - [ ] O sistema deve permitir que diferentes sessões de videoconferência possam ocorrer simultaneamente (por exemplo, diferentes salas de videoconferência permitindo que diferentes teleatendimentos ocorram na mesma data/hora), envolvendo diferentes pacientes e profissionais.
 
-
 ## 6. Videoconferência [ECF.22.06]
 
 **Inicialização da videoconferência pelo prontuário:**
 
   - [ ] O S-RES deve permitir que o profissional de saúde possa iniciar uma sessão de videoconferência com um determinado paciente a partir de seu respectivo prontuário.
-
 
 ## 7. Videoconferência [ECF.22.07]
 
