@@ -4,14 +4,14 @@
 
 **Versão do software**
 
-a) O S-RES (conjunto de componentes principais) deve apresentar as informações de identificação do software desenvolvido pelo fornecedor, contendo minimamente o nome do software, nome do fornecedor, identificação completa da versão e/ou release e/ou build. Essas informações deverão corresponder à da versão certificada do produto, e será utilizada como referência em todos os documentos, selo, e outros documentos relacionados à certificação.
+  - [ ] O S-RES (conjunto de componentes principais) deve apresentar as informações de identificação do software desenvolvido pelo fornecedor, contendo minimamente o nome do software, nome do fornecedor, identificação completa da versão e/ou release e/ou build. Essas informações deverão corresponder à da versão certificada do produto, e será utilizada como referência em todos os documentos, selo, e outros documentos relacionados à certificação.
 
 b) Essas informações deverão estar disponíveis minimamente:
 
-- [ ] Na tela inicial do S-RES;
-- [ ] Nas telas de cada módulo (por exemplo, cabeçalho, rodapé ou ainda em um item de um menu), de modo que quando o sistema esteja em uso essas informações estejam sempre acessíveis;
-- [ ] Impressões geradas oriundas do S-RES. Neste caso, tais informações deverão ser exibidas minimamente na última página do documento impresso (em um cabeçalho ou rodapé, por exemplo).
-- [ ] Arquivo de exportação da trilha de auditoria.
+  - [ ] Na tela inicial do S-RES;
+  - [ ] Nas telas de cada módulo (por exemplo, cabeçalho, rodapé ou ainda em um item de um menu), de modo que quando o sistema esteja em uso essas informações estejam sempre acessíveis;
+  - [ ] Impressões geradas oriundas do S-RES. Neste caso, tais informações deverão ser exibidas minimamente na última página do documento impresso (em um cabeçalho ou rodapé, por exemplo).
+  - [ ] Arquivo de exportação da trilha de auditoria.
 
 ---
 # NGS1.02 - Identificação e autenticação de pessoas
@@ -22,16 +22,16 @@ b) Essas informações deverão estar disponíveis minimamente:
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-a) Todo usuário do S-RES deve ser identificado e autenticado antes de qualquer acesso a dados ou funcionalidades do S-RES.
+  - [ ]  Todo usuário do S-RES deve ser identificado e autenticado antes de qualquer acesso a dados ou funcionalidades do S-RES.
 
 b) Utilizar, em todos os processos autenticação de pessoa, no mínimo um dos seguintes métodos de autenticação de pessoa:
   - [ ] Digitação de um nome de usuário e senha secreta de acesso;
   - [ ] Certificado digital e PIN (Personal Identifier Number);
   - [ ] Validação biométrica associada ao PIN (Personal Identifier Number);
 
-c) As credenciais para autenticação no S-RES devem ser validadas após a submissão das mesmas ao serviço de autenticação do sistema no lado do servidor, evitando que a validação ocorra somente no lado do cliente.
+  - [ ] As credenciais para autenticação no S-RES devem ser validadas após a submissão das mesmas ao serviço de autenticação do sistema no lado do servidor, evitando que a validação ocorra somente no lado do cliente.
 
-d) Em caso de aplicação móvel, a autenticação pode ser realizada no lado do cliente, caso haja uso do aplicativo de forma off-line. No momento da sincronização dos dados, deve haver a autenticação no lado servidor antes do registro dos dados no sistema. 
+  - [ ] Em caso de aplicação móvel, a autenticação pode ser realizada no lado do cliente, caso haja uso do aplicativo de forma off-line. No momento da sincronização dos dados, deve haver a autenticação no lado servidor antes do registro dos dados no sistema. 
 
 Nota: Quaisquer outras técnicas diferentes das exigidas acima, tais como OTP (one-time password) e Captcha, são considerados complementares, podendo ser utilizados apenas em conjunto com um dos métodos supracitados.
 
@@ -41,18 +41,18 @@ Nota: Quaisquer outras técnicas diferentes das exigidas acima, tais como OTP (o
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES deve armazenar de forma protegida todos os dados ou parâmetros utilizados no processo de autenticação de usuário. 
+  - [ ] O S-RES deve armazenar de forma protegida todos os dados ou parâmetros utilizados no processo de autenticação de usuário. 
 
-Método: Nome de usuário e senha
+  a) Método: Nome de usuário e senha
   - [ ] A senha deve ser armazenada em banco de dados, de forma codificada por algoritmo de hash aberto (público) de no mínimo 160 bits.
   - [ ] As codificações das senhas de acesso dos usuários devem ser protegidas contra acesso não autorizado. Apenas o usuário do banco de dados utilizado pela aplicação deve ter acesso às mesmas.
 
-Método: Biometria (condição: somente para pessoas)
+  b) Método: Biometria (condição: somente para pessoas)
   - [ ] Os templates biométricos das pessoas devem ser protegidos contra acesso não autorizado. Apenas o usuário do banco de dados utilizado pela aplicação deve ter acesso aos mesmos.
   - [ ] As amostras biométricas coletadas e transmitidas durante o processo de autenticação devem ser protegidas contra acesso não autorizado.
   - [ ] Em caso de aplicação móvel, deve ser utilizada a biometria do sistema operacional. 
 
-Método: One-time password (OTP)
+  c) Método: One-time password (OTP)
   - [ ] As sementes de geração dos valores numéricos devem ser protegidas contra acesso não autorizado. Apenas o usuário do banco de dados utilizado pela aplicação deve ter acesso às mesmas.
 
 ## 3. Identificação e autenticação de pessoas [NGS1.02.03]
@@ -63,7 +63,7 @@ Condição 1: Utilização de autenticação baseada no método de usuário e se
 
 Condição 2: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES deve exigir que toda senha de usuário seja definida seguindo minimamente os seguintes critérios:
+a) O S-RES deve exigir que toda senha de usuário seja definida seguindo minimamente os seguintes critérios:
   - [ ] Pelo menos 8 caracteres
   - [ ] Pelo menos um caractere alfabético
   - [ ] Pelo menos um caractere numérico
@@ -103,7 +103,7 @@ Condição 1: Utilização de autenticação baseada no método de usuário e se
 
 Condição 2: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-Em todos os processos de troca de senha, o S-RES deve exigir que a nova senha do usuário seja diferente da atual e da imediatamente anterior.
+  - [ ] Em todos os processos de troca de senha, o S-RES deve exigir que a nova senha do usuário seja diferente da atual e da imediatamente anterior.
 
 ## 7. Identificação e autenticação de pessoas [NGS1.02.12]
 
@@ -113,14 +113,15 @@ Condição 1: Utilização de autenticação baseada no método de usuário e se
 
 Condição 2: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-a)
-  - [ ] O S-RES deve permitir que, na tela inicial de login no sistema, o usuário possa obter uma nova senha (opção “esqueci a senha”).
+a) No momento em que o usuário solicitar a recuperação de senha, o S-RES deve realizar uma das seguintes opções:
 
-b) No momento em que o usuário solicitar a recuperação de senha, o S-RES deve realizar uma das seguintes opções:
   - [ ] Gerar uma nova senha automaticamente e enviá-la ao usuário, ou
   - [ ] Encaminhar ao usuário instruções para que o mesmo possa definir uma nova senha.
 
-c) A geração e envio da senha ou encaminhamento  das instruções  deve ser realizado por meio de um canal (SMS ou e-mail, por exemplo) cuja identificação tenha sido registrada previamente no cadastro do usuário.
+b)  Complementos...
+  - [ ] O S-RES deve permitir que, na tela inicial de login no sistema, o usuário possa obter uma nova senha (opção “esqueci a senha”).
+
+  - [ ] A geração e envio da senha ou encaminhamento  das instruções  deve ser realizado por meio de um canal (SMS ou e-mail, por exemplo) cuja identificação tenha sido registrada previamente no cadastro do usuário.
 
 ## 8. Identificação e autenticação de pessoas [NGS1.02.13]
 
@@ -128,7 +129,7 @@ c) A geração e envio da senha ou encaminhamento  das instruções  deve ser re
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-  -[ ] O S-RES deve possuir, em todos os processos de autenticação de usuário, independentemente do método utilizado, mecanismos para bloquear seu acesso após um número máximo configurável de tentativas consecutivas de login com autenticação inválida, que não exceda a 10 tentativas. 
+  - [ ] O S-RES deve possuir, em todos os processos de autenticação de usuário, independentemente do método utilizado, mecanismos para bloquear seu acesso após um número máximo configurável de tentativas consecutivas de login com autenticação inválida, que não exceda a 10 tentativas. 
 
   - [ ] Após o bloqueio da conta de um usuário, o sistema só deve permitir login deste após o seu desbloqueio pelo administrador ou por algum método definido pelo sistema que impeça o acesso por pessoas não autorizadas. 
 
@@ -170,13 +171,13 @@ Condição 2: Para a modalidade de Receita Digital, esse requisito se aplica ape
 
 **Segurança contra roubo de sessão de usuário**
 
-a) A sessão de comunicação remota entre cliente e servidor deve possuir controles de segurança que impeçam o roubo ou reuso da sessão do usuário. 
+  - [ ] A sessão de comunicação remota entre cliente e servidor deve possuir controles de segurança que impeçam o roubo ou reuso da sessão do usuário. 
 
-b) As credenciais de acesso não devem ser transmitidas entre as partes na forma de texto claro.
+  - [ ] As credenciais de acesso não devem ser transmitidas entre as partes na forma de texto claro.
 
-c) Deve haver controles que impeçam o reuso de identificadores de sessão do usuário (ataques de replay e covert-channel) e roubo da sessão.
+  - [ ] Deve haver controles que impeçam o reuso de identificadores de sessão do usuário (ataques de replay e covert-channel) e roubo da sessão.
 
-d) Não deve ser possível para qualquer usuário do sistema desativar ou desabilitar tais controles.
+  - [ ] Não deve ser possível para qualquer usuário do sistema desativar ou desabilitar tais controles.
 
 ---
 
@@ -186,7 +187,7 @@ d) Não deve ser possível para qualquer usuário do sistema desativar ou desabi
 
 **Impedir acesso por pessoas não autorizadas**
 
-Todo acesso ou visualização de dados do S-RES deve ser realizado apenas por usuários previamente autorizados. Tal autorização deve ser provida por meio de permissões atribuídas a perfis de usuário.
+  - [ ] Todo acesso ou visualização de dados do S-RES deve ser realizado apenas por usuários previamente autorizados. Tal autorização deve ser provida por meio de permissões atribuídas a perfis de usuário.
 
 ## 2. Autorização e controle de acesso [NGS1.03.02]
 
@@ -194,15 +195,15 @@ Todo acesso ou visualização de dados do S-RES deve ser realizado apenas por us
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES deve disponibilizar minimamente três perfis de usuário: administrador do sistema, profissional administrativo (sem acesso aos dados clínicos) e profissional de saúde.
+  - [ ] O S-RES deve disponibilizar minimamente três perfis de usuário: administrador do sistema, profissional administrativo (sem acesso aos dados clínicos) e profissional de saúde.
 
 ## 3. Autorização e controle de acesso [NGS1.03.03]
 
 **Gerenciamento de perfis**
 
-a) O S-RES deve permitir o gerenciamento (cadastro, ativação/inativação e alteração) de perfis, por meio da aplicação.
+  - [ ] O S-RES deve permitir o gerenciamento (cadastro, ativação/inativação e alteração) de perfis, por meio da aplicação.
 
-b) O S-RES deve permitir a atribuição de permissões específicas a um determinado perfil. Tais permissões podem ser pré-definidas no S-RES de acordo com as suas funcionalidades ou telas oferecidas (por exemplo, permissão para realizar prescrição eletrônica, permissão para realização de agendamentos, etc.).
+    - [ ] O S-RES deve permitir a atribuição de permissões específicas a um determinado perfil. Tais permissões podem ser pré-definidas no S-RES de acordo com as suas funcionalidades ou telas oferecidas (por exemplo, permissão para realizar prescrição eletrônica, permissão para realização de agendamentos, etc.).
 
 ## 4. Autorização e controle de acesso [NGS1.03.07]
 
@@ -220,7 +221,7 @@ Condição: Para a modalidade de Receita Digital, esse requisito se aplica apena
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES deve permitir o gerenciamento (cadastro, ativação/inativação e alteração de cadastro) de usuários, por meio da aplicação.
+  - [ ] O S-RES deve permitir o gerenciamento (cadastro, ativação/inativação e alteração de cadastro) de usuários, por meio da aplicação.
 
 ## 6. Autorização e controle de acesso [NGS1.03.09]
 
@@ -244,7 +245,7 @@ Condição: Para a modalidade de Receita Digital, esse requisito se aplica apena
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES deve garantir que haja ao menos um usuário ativo com perfil de administrador e/ou gestor de acessos (por exemplo, por meio da criação de um usuário administrador fixo que não pode ser inativado ou ter suas permissões alteradas).
+  - [ ] O S-RES deve garantir que haja ao menos um usuário ativo com perfil de administrador e/ou gestor de acessos (por exemplo, por meio da criação de um usuário administrador fixo que não pode ser inativado ou ter suas permissões alteradas).
 
 ## 8. Autorização e controle de acesso [NGS1.03.11]
 
@@ -252,7 +253,7 @@ O S-RES deve garantir que haja ao menos um usuário ativo com perfil de administ
 
 Condição: Para a modalidade de Receita Digital, esse requisito se aplica apenas aos sistemas que podem operar de forma autônoma e independente (stand-alone).
 
-O S-RES não deve permitir que usuários com permissão de gerenciamento de usuários e perfis possam alterar permissões de acesso de seu próprio usuário no S-RES (autoconcessão).
+  - [ ] O S-RES não deve permitir que usuários com permissão de gerenciamento de usuários e perfis possam alterar permissões de acesso de seu próprio usuário no S-RES (autoconcessão).
 
 ---
 
@@ -262,9 +263,9 @@ O S-RES não deve permitir que usuários com permissão de gerenciamento de usu�
 
 **Geração de cópia de segurança**
 
-a) O S-RES deve permitir a geração de cópia de segurança ("backup full"), pela aplicação ou SGBD, contendo informações suficientes para restauração.
+  - [ ] O S-RES deve permitir a geração de cópia de segurança ("backup full"), pela aplicação ou SGBD, contendo informações suficientes para restauração.
 
-b) A geração de cópia de segurança deve exportar os atributos de segurança e metadados em conjunto com os dados.
+  - [ ] A geração de cópia de segurança deve exportar os atributos de segurança e metadados em conjunto com os dados.
 
 Nota: Considera-se como atributos de segurança todos os parâmetros e configurações existentes. 
 
@@ -272,23 +273,23 @@ Nota: Considera-se como atributos de segurança todos os parâmetros e configura
 
 **Sigilo da cópia de segurança**
 
-O S-RES (aplicação ou SGBD) deve garantir o sigilo de suas cópias de segurança (por exemplo, realizando encriptação automática).
+  - [ ] O S-RES (aplicação ou SGBD) deve garantir o sigilo de suas cópias de segurança (por exemplo, realizando encriptação automática).
 
 ## 3. Disponibilidade do RES [NGS1.04.04]
 
 **Restauração de cópia de segurança**
 
-a) O S-RES deve permitir a restauração da cópia de segurança, pela aplicação ou SGBD.
+  - [ ] O S-RES deve permitir a restauração da cópia de segurança, pela aplicação ou SGBD.
 
-b) Na restauração de uma cópia de segurança os atributos de segurança e metadados devem ser automaticamente recuperados, sem a intervenção do administrador.
+  - [ ] Na restauração de uma cópia de segurança os atributos de segurança e metadados devem ser automaticamente recuperados, sem a intervenção do administrador.
 
 ## 4. Disponibilidade do RES [NGS1.04.05]
 
 **Integridade na restauração da cópia de segurança**
 
-a) O S-RES deve possuir controle de integridade da cópia de segurança. 
+- [ ] O S-RES deve possuir controle de integridade da cópia de segurança. 
 
-b) A verificação da integridade deverá ocorrer durante a restauração da cópia, gerando um alerta caso ocorra alguma falha. O processo de restauração deve garantir sua completude de forma que toda informação seja restaurada. Caso haja algum erro durante a restauração, nenhuma informação deverá então ser restaurada, retornando-se, portanto, ao estado anterior (rollback).
+- [ ] A verificação da integridade deverá ocorrer durante a restauração da cópia, gerando um alerta caso ocorra alguma falha. O processo de restauração deve garantir sua completude de forma que toda informação seja restaurada. Caso haja algum erro durante a restauração, nenhuma informação deverá então ser restaurada, retornando-se, portanto, ao estado anterior (rollback).
 
 ## 5. Disponibilidade do RES [NGS1.04.06]
 
@@ -296,9 +297,9 @@ b) A verificação da integridade deverá ocorrer durante a restauração da có
 
 Condição: S-RES não dispõe de infraestrutura com espaço de armazenamento dinâmico.
 
-a) S-RES deve permitir o gerenciamento do espaço de armazenamento de registros por meio da configuração de um limiar de ocupação. 
+  - [ ] S-RES deve permitir o gerenciamento do espaço de armazenamento de registros por meio da configuração de um limiar de ocupação. 
 
-b) O S-RES deve ainda permitir a configuração de um ou mais usuários com perfil de administrador do sistema que deverão receber uma notificação do S-RES no caso desse limite de ocupação ser atingido.
+  - [ ] O S-RES deve ainda permitir a configuração de um ou mais usuários com perfil de administrador do sistema que deverão receber uma notificação do S-RES no caso desse limite de ocupação ser atingido.
 
 ---
 
@@ -308,9 +309,9 @@ b) O S-RES deve ainda permitir a configuração de um ou mais usuários com perf
 
 **Segurança da comunicação com componente de interação com o usuário**
 
-a) A sessão de comunicação entre o componente de interação com o usuário (ex.: browser ou executável cliente) e os outros componentes do S-RES (ex.: servidor de aplicação, banco de dados, etc) deve oferecer os seguintes serviços de segurança: autenticação do servidor, integridade dos dados e confidencialidade dos dados.
+  - [ ] A sessão de comunicação entre o componente de interação com o usuário (ex.: browser ou executável cliente) e os outros componentes do S-RES (ex.: servidor de aplicação, banco de dados, etc) deve oferecer os seguintes serviços de segurança: autenticação do servidor, integridade dos dados e confidencialidade dos dados.
 
-b) O serviço de segurança empregado deve implementar criptografia dos dados em trânsito (por exemplo, uso de HTTPS).
+  - [ ] O serviço de segurança empregado deve implementar criptografia dos dados em trânsito (por exemplo, uso de HTTPS).
 
 ## 2. Comunicação entre componentes do S-RES [NGS1.05.02]
 
@@ -318,9 +319,9 @@ b) O serviço de segurança empregado deve implementar criptografia dos dados em
 
 Condição: S-RES em arquitetura Web.
 
-a) Todo processamento (modificação) de dados de RES deve ocorrer no lado do servidor. Todos os dados apresentados no lado cliente devem ter sido gerados e processados no lado servidor.
+  - [ ] Todo processamento (modificação) de dados de RES deve ocorrer no lado do servidor. Todos os dados apresentados no lado cliente devem ter sido gerados e processados no lado servidor.
 
-b) Todos os processos de validação de dados devem ser realizados no lado do servidor.
+  - [ ] Todos os processos de validação de dados devem ser realizados no lado do servidor.
 
 Nota: Opcionalmente, por questões de performance, poderá haver validação de dados inicialmente no lado cliente desde que seguida de validação no lado do servidor.
 
@@ -350,9 +351,9 @@ Possuir controle de integridade e possibilidade de verificação da origem/autor
 
 **Utilização de SGBD** 
 
-a) Todos os dados de RES em S-RES devem ser armazenados integral e exclusivamente por um Sistema de Gerenciamento de Banco de Dados (SGBD) que contemple minimamente o sigilo dos dados.
+  - [ ] Todos os dados de RES em S-RES devem ser armazenados integral e exclusivamente por um Sistema de Gerenciamento de Banco de Dados (SGBD) que contemple minimamente o sigilo dos dados.
 
-b) Arquivos e documentos anexados ou gerados pelo S-RES (por exemplo, laudos em PDF, áudios, vídeos, etc.) podem, opcionalmente, ser armazenados em estrutura de diretórios, desde que o S-RES garanta o sigilo desses documentos de forma que os mesmos somente possam ser visualizados por meio de seu acesso pelo S-RES. Adicionalmente, o nome dos arquivos e diretórios não podem conter qualquer informação que permita a identificação de seu conteúdo.
+  - [ ] Arquivos e documentos anexados ou gerados pelo S-RES (por exemplo, laudos em PDF, áudios, vídeos, etc.) podem, opcionalmente, ser armazenados em estrutura de diretórios, desde que o S-RES garanta o sigilo desses documentos de forma que os mesmos somente possam ser visualizados por meio de seu acesso pelo S-RES. Adicionalmente, o nome dos arquivos e diretórios não podem conter qualquer informação que permita a identificação de seu conteúdo.
 
 ## 2. Segurança de dados [NGS1.06.03]
 
@@ -384,9 +385,9 @@ O S-RES deve gerar registros de auditoria de forma contínua e permanente, não 
 
 **Proteção dos registros de auditoria**
 
-a) Os registros de auditoria devem ser protegidos contra acesso não autorizado e contra qualquer tipo de alteração. 
+  - [ ] Os registros de auditoria devem ser protegidos contra acesso não autorizado e contra qualquer tipo de alteração. 
 
-b) Apenas usuários com perfil de auditor ou, na ausência deste, o administrador do sistema, podem ter acesso (consulta) a esses dados.
+  - [ ] Apenas usuários com perfil de auditor ou, na ausência deste, o administrador do sistema, podem ter acesso (consulta) a esses dados.
 
 ## 3. Auditoria [NGS1.07.03]
 
@@ -418,7 +419,7 @@ c) Quanto às ações operacionais:
 
 **Informações do registro de auditoria**
 
-O S-RES deve registrar, para cada registro de auditoria, minimamente  as seguintes informações:
+a) O S-RES deve registrar, para cada registro de auditoria, minimamente  as seguintes informações:
  - [ ]  Número de identificação unívoca do registro da trilha; 
  - [ ]  Data e hora do evento;
  - [ ]  Tipo de evento (por exemplo: criação de atendimento, acesso ao prontuário, acesso a documento de sumário de alta, impressão de documento, troca de senha, etc.);
@@ -431,17 +432,17 @@ O S-RES deve registrar, para cada registro de auditoria, minimamente  as seguint
 
 **Privacidade do paciente na trilha de auditoria**
 
-Dados clínicos ou dados de identificação do paciente não poderão ser registrados na trilha de auditoria.
+  - [ ] Dados clínicos ou dados de identificação do paciente não poderão ser registrados na trilha de auditoria.
 
 ## 6. Auditoria [NGS1.07.07]
 
 **Visualização dos registros da trilha de auditoria**
 
-a) O S-RES deve possuir uma interface na aplicação para visualização dos registros de auditoria em ordem cronológica. 
+  - [ ] O S-RES deve possuir uma interface na aplicação para visualização dos registros de auditoria em ordem cronológica. 
 
-b) Todos os registros da trilha de auditoria devem ser passíveis de visualização por meio dessa interface. 
+  - [ ] Todos os registros da trilha de auditoria devem ser passíveis de visualização por meio dessa interface. 
 
-c) Tal interface deve permitir a filtragem de registros minimamente por data, evento, identificador único e permanente do usuário e identificador único e permanente do registro afetado (por exemplo, identificador do paciente).
+  - [ ] Tal interface deve permitir a filtragem de registros minimamente por data, evento, identificador único e permanente do usuário e identificador único e permanente do registro afetado (por exemplo, identificador do paciente).
 
 ---
 
@@ -682,11 +683,3 @@ Nota: Consideram-se como finalizados os registros que foram concluídos e libera
   - [ ] Todos os dados registrados no S-RES e considerados como finalizados/definitivos/liberados devem ser mantidos permanentemente. Dessa forma, registros inativos devem continuar vinculados ao prontuário do respectivo paciente e ser passíveis de visualização tanto em tela quanto exportação, incluindo data/hora, profissional responsável e justificativa da inativação.
 
   - [ ] Qualquer registro que tenha sido inativado deve ter seu status de inativo apresentado de forma clara e destacada tanto em tela quanto exportação, de forma a deixar evidente o conteúdo que está inativo (tachando o texto, por exemplo).
-
-
-
-
-
-
-
-
