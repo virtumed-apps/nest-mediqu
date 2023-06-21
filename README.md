@@ -27,82 +27,83 @@
 
 ---
 
-## Description
+# Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ---
 
-## Installation
+# Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+# Running the app
 
-# development
+## development
 ```bash
 $ npm run start
 ```
-# watch mode
+## watch mode
 ```bash
 $ npm run start:dev
 ```
-# production mode
+## production mode
 ```bash
 $ npm run start:prod
 ```
 
-## Test
+# Test
 
-# unit tests
+## unit tests
 ```bash
 $ npm run test
 ```
-# e2e tests
+## e2e tests
 ```bash
 $ npm run test:e2e
 ```
-# test coverage
+## test coverage
 ```bash
 $ npm run test:cov
 ```
 
-## Docker
+# Docker
 
 Para iniciar o projeto com o Docker, você pode executar o seguinte comando:
 
-# Create Database
+## Create Database
 ```bash
 $ docker run -d --name postgresql -e POSTGRESQL_PASSWORD=d0ec824ce8b2f652668f3022f7aa7dc7 -e POSTGRESQL_USERNAME=postgres -e POSTGRESQL_DATABASE=virtudev -p 35432:5432 bitnami/postgresql:latest
 ```
 
-## Support
+# Support
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please read more here.
 
-## Stay in touch
+# Stay in touch
 - Author - Kamil Myśliwiec
 - Website - https://nestjs.com
 - Twitter - @nestframework
 
-## License
+# License
 
 Nest is MIT licensed.
 
 ## Dotenv
 - BASE_URL=http://localhost:3333
 
-This was inserted by prisma init:
+- This was inserted by prisma init:
+- 
 Environment variables declared in this file are automatically made available to Prisma.
 See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
 Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
 See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
-DATABASE_URL="postgresql://postgres:d0ec824ce8b2f652668f3022f7aa7dc7@localhost:35432/virtudev"
+- DATABASE_URL="postgresql://postgres:d0ec824ce8b2f652668f3022f7aa7dc7@localhost:35432/virtudev"
 
-MAIL_DRIVER=ethereal
-MAIL_HOST=smtp.example.com
-MAIL_USER=user@example.com
-MAIL_PASSWORD=topsecret
-MAIL_FROM=noreply@example.com
+-- MAIL_DRIVER=ethereal
+-- MAIL_HOST=smtp.example.com
+-- MAIL_USER=user@example.com
+-- MAIL_PASSWORD=topsecret
+-- MAIL_FROM=noreply@example.com
