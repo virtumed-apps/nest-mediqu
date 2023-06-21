@@ -10,6 +10,7 @@ import { AppointmentModule } from 'src/app/appointments/appointment.module';
 import { UserTokenModule } from 'src/app/user-token/user-token.module';
 import { MailModule } from 'src/app/mail/mailer.module';
 import { ProfissionalModule } from 'src/app/profissional/profissional.module';
+import { ChatModule } from 'src/app/chat/chat.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ProfissionalModule } from 'src/app/profissional/profissional.module';
     UserTokenModule,
     SecurityModule,
     MailModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
