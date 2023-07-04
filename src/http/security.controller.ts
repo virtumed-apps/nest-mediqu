@@ -8,17 +8,18 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
 import { LoggedUser } from 'src/common/decorators/user.decorator';
 import { LoginSwagger } from 'src/app/security/swagger/login.dto';
 import { LoginResponseSwagger } from 'src/app/security/swagger/login-user.dto';
 import { SecurityService } from 'src/app/security/service/security.service';
 import { User } from 'src/entities/user.entities';
+import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
+import { RefreshTokenGuard } from 'src/common/guards/refreshToken.guard';
 
 @ApiTags('security')
 @Controller('security')
 export class SecurityController {
-  constructor(private readonly authService: SecurityService) {}
+  constructor(private readonly securityService: SecurityService) {}
 
   @Post()
   @HttpCode(HttpStatus.OK)
@@ -26,16 +27,33 @@ export class SecurityController {
     summary: 'Realizar login, recebendo um token de autenticação',
   })
   login(@Body() loginDto: LoginSwagger): Promise<LoginResponseSwagger> {
-    return this.authService.login(loginDto);
+    return this.securityService.login(loginDto);
   }
 
-  @UseGuards(AuthGuard())
+  @UseGuards(AccessTokenGuard)
   @Get()
   @ApiOperation({
     summary: 'Retorna o usuário autenticado no momento',
   })
   @ApiBearerAuth()
-  profileAdmin(@LoggedUser() user: User) {
+  profileUser(@LoggedUser() user: User) {
     return user;
+  }
+
+  @UseGuards(RefreshTokenGuard)
+  @Get('refresh')
+  @ApiOperation({
+    summary: 'Realiza o Refresh Token',
+  })
+  @ApiBearerAuth()
+  refreshTokens(@LoggedUser() user: User) {
+    return this.securityService.refreshTokens(user.id, user.refreshToken);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @ApiBearerAuth()
+  @Get('logout')
+  logout(@LoggedUser() user: User) {
+    this.securityService.logout(user.id);
   }
 }

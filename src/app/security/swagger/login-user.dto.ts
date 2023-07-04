@@ -1,13 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { User } from '@prisma/client';
+import { IsObject } from 'class-validator';
+import { User } from 'src/entities/user.entities';
 
 export class LoginResponseSwagger {
+  @IsObject()
   @ApiProperty({
     description: 'JWT gerado pelo login',
-    example:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InBhdWxvc2FsdmF0b3JlIiwiaWF0IjoxNjUyMjgxNjUwLCJleHAiOjE2NTIzNjgwNTB9._otkmKymFZ4kgxwAMdK5oXBDg6cK6_NXwCrP64IilS8',
+    example: {
+      accessToken:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+      refreshToken:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    },
   })
-  token: string;
+  token: object;
 
   @ApiProperty({
     description: 'Dados do usuário autenticado',

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { schedule } from 'node-cron';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 import { Role } from '@prisma/client';
@@ -7,6 +7,7 @@ import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 import * as bcrypt from 'bcrypt';
 import IUserRepository from './IUserRepository';
+import { SecurityService } from 'src/app/security/service/security.service';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
@@ -19,6 +20,7 @@ export class UserRepository implements IUserRepository {
     failedLoginAttempts: false,
     avatar_url: true,
     role: true,
+    refreshToken: true,
     active: true,
     first_time: true,
     userInfoId: false,
@@ -26,21 +28,20 @@ export class UserRepository implements IUserRepository {
     createdAt: false,
     updatedAt: false,
   };
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly securityService: SecurityService,
+  ) {}
 
-  async createUser({
-    name,
-    avatar_url,
-    email,
-    password,
-  }: CreateUserSwagger): Promise<User> {
-    const hashPassword = await bcrypt.hash(password, 10);
+  async createUser(data: CreateUserSwagger): Promise<User> {
+    const hashPassword = await bcrypt.hash(data.password, 10);
 
     const user = await this.prisma.user.create({
       data: {
-        name,
-        avatar_url,
-        email,
+        name: data.name,
+        avatar_url: data.avatar_url,
+        email: data.email,
+        refreshToken: '',
         role: Role.user,
         password: hashPassword,
         active: true,
@@ -49,7 +50,14 @@ export class UserRepository implements IUserRepository {
       select: this.userSelect,
     });
 
-    return user;
+    const tokens = await this.securityService.getTokens(user.id, user.name);
+
+    const addRefresh = await this.securityService.updateRefreshToken(
+      user.id,
+      tokens.refreshToken,
+    );
+
+    return addRefresh;
   }
 
   async findEmailUser(email: string): Promise<User> {
@@ -66,26 +74,6 @@ export class UserRepository implements IUserRepository {
     return user;
   }
 
-  async createDoctor(data: CreateUserSwagger): Promise<User> {
-    if (data.password !== data.confirmPassword) {
-      throw new BadRequestException('The passwords provided are not the same.');
-    }
-
-    delete data.confirmPassword;
-
-    const hashPassword = await bcrypt.hash(data.password, 10);
-
-    return await this.prisma.user.create({
-      data: {
-        name: data.name,
-        avatar_url: data.avatar_url,
-        email: data.email,
-        role: 'doctor',
-        password: hashPassword,
-      },
-    });
-  }
-
   async findAllUser(): Promise<User[]> {
     const users = await this.prisma.user.findMany({
       select: this.userSelect,
@@ -100,6 +88,13 @@ export class UserRepository implements IUserRepository {
       select: this.userSelect,
     });
     return user;
+  }
+
+  async logout(id: string) {
+    return this.prisma.user.update({
+      where: { id },
+      data: { refreshToken: null },
+    });
   }
 
   async updateUser(id: string, data: UpdateUserSwagger): Promise<User> {

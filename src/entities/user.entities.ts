@@ -5,6 +5,7 @@ export class User {
   name: string;
   email: string;
   password: string;
+  refreshToken: string;
   active: boolean;
   avatar_url: string;
   role: Role;

@@ -8,15 +8,17 @@ datasource db {
 }
 
 model User {
-  id                  String  @id @default(uuid())
-  email               String  @unique
+  id                  String @id @default(uuid())
+  email               String @unique
   name                String
   password            String
   avatar_url          String
-  active              Boolean @default(true)
-  first_time          Boolean @default(true)
-  accountLocked       Boolean @default(false) // Novo campo adicionado
-  failedLoginAttempts Int     @default(0) // Adicione esta linha
+  refreshToken        String
+  failedLoginAttempts Int    @default(0) // Adicione esta linha
+
+  active        Boolean @default(true)
+  first_time    Boolean @default(true)
+  accountLocked Boolean @default(false) // Novo campo adicionado
 
   role Role @default(user)
 

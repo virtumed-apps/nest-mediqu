@@ -40,8 +40,7 @@ export class CreateUserSwagger {
 
   @IsString()
   @ApiProperty({
-    description:
-      'Senha do usuário para login. Deve ter 8 caracteres, um maiúsculo e um caractere especial',
+    description: 'Imagem de perfil do Usuário',
     example:
       'https://www.wikihow.com/images/thumb/d/db/Get-the-URL-for-Pictures-Step-2-Version-6.jpg/v4-460px-Get-the-URL-for-Pictures-Step-2-Version-6.jpg',
   })

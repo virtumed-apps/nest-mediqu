@@ -23,6 +23,7 @@ export class AdminRepository implements IAdminRepository {
           name: data.name,
           avatar_url: data.avatar_url,
           email: data.email,
+          refreshToken: '',
           role: 'admin',
           password: hashPassword,
         },

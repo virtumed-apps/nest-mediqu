@@ -23,10 +23,6 @@ export class UserService {
     return user;
   }
 
-  async createDoctor(data: CreateUserSwagger): Promise<User> {
-    return this.userRepository.createDoctor(data);
-  }
-
   async getAllUsers(): Promise<User[]> {
     return this.userRepository.findAllUser();
   }

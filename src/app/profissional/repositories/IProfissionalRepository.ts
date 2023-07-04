@@ -2,14 +2,7 @@ import { User } from 'src/entities/user.entities';
 import { CreateUserSwagger } from '../swagger/create-user.dto';
 import { UpdateUserSwagger } from '../swagger/update-user.dto';
 
-export default interface IUserRepository {
-  createUser({
-    name,
-    avatar_url,
-    email,
-    password,
-  }: CreateUserSwagger): Promise<User>;
-
+export default interface IProfissionalRepository {
   createDoctor(data: CreateUserSwagger): Promise<User>;
 
   findAllUser(): Promise<User[]>;
